@@ -33,15 +33,19 @@ public class Personne extends Individu {
     }
     
     public Personne (String nom, String prenom, String numeroTelephone,String addresseMail) {
-    	super(prenom, prenom);
+    	super(nom, prenom);
     	numero = new Telephone(numeroTelephone);
-    	this.addresseMail = addresseMail;
+    	if (valide(addresseMail)) {
+    		this.addresseMail = addresseMail;			
+		} else {
+			throw new IllegalArgumentException("Erreur : L'addresse mail saisie est invalide.");
+		}
     }
     
     public void afficher () {
     	super.afficher();
     	numero.afficher();
-    	System.out.println(addresseMail);
+    	System.out.println("\n"+addresseMail);
     }
     
     @SuppressWarnings("unused")
@@ -53,8 +57,9 @@ public class Personne extends Individu {
 
         do {
             System.out.print("Addresse mail ? ");
-            if (true) { // Vérifier la validiter de la saisie
-            	addresseMail = entree.nextLine();				
+            if (valide(addresseMail)) { // Vérifier la validiter de la saisie
+            	addresseMail = entree.nextLine();
+            	correct = true;
 			} else {
 				System.out.println("Addresse mail invalide. Recommencez ! ");				
 			}
@@ -62,7 +67,33 @@ public class Personne extends Individu {
     }
     
     public String information () {
-    	return null;
+    	return "Nom :............." + getNom() + "\n" +
+    		   "Prenom :.........." + getPrenom() + "\n" +
+    		   "Téléphone :......." + numero.getNumero() + "\n" +
+    		   "Adresse mail :...." + addresseMail;
+    }
+    
+    /** @param args inutilisé */
+    public static void main (String[] args) {
+    	Personne a = new Personne();
+    	Personne b = new Personne("Dubois","Jean");
+    	Personne c = new Personne("Martin","Paul","0612345678","paul.dubois@gmail.com");
+    	
+    	a.afficher();
+    	System.out.println();
+    	b.afficher();
+    	System.out.println();
+    	c.afficher();
+    	System.out.println();
+    	
+//    	a.saisir();
+    	
+    	System.out.println(a.information());
+    	
+    }
+    
+    private static boolean valide (String addresseMail) {
+    	return addresseMail.matches("^[\\w-_.]+@[\\w-_]+.[a-zA-Z]{2,3}$");
     }
     
     
