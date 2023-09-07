@@ -52,17 +52,18 @@ public class Personne extends Individu {
     
     @SuppressWarnings("unused")
 	public void saisir () {
+    	String saisie;
     	super.saisir();
     	numero.saisir();
+    	System.out.println("Telephone set");
     	
     	boolean correct = false;
 
         do {
             System.out.print("Addresse mail ? ");
-            if (valide(addresseMail)) { // Vérifier la validiter de la saisie
-            	addresseMail = entree.nextLine();
-            	correct = true;
-			} else {
+            addresseMail = entree.nextLine();
+            correct = valide(addresseMail);
+			if (!correct) { // Vérifier la validiter de la saisie
 				System.out.println("Addresse mail invalide. Recommencez ! ");				
 			}
         } while (!correct);
@@ -95,7 +96,7 @@ public class Personne extends Individu {
     }
     
     private static boolean valide (String addresseMail) {
-    	return addresseMail.matches("^[\\w-_.]+@[\\w-_]+.[a-zA-Z]{2,3}$");
+    	return addresseMail.matches("^[\\w._-]+@[\\w._-]+\\.[a-z]{2,3}$");
     }
     
     
