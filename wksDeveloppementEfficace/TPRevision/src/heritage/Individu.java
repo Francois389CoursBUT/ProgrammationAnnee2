@@ -93,8 +93,7 @@ public class Individu {
         return nom.equalsIgnoreCase(leNom) && prenom.equalsIgnoreCase(lePrenom);
     }
 
-<<<<<<< HEAD
-=======
+
 	public String getNom() {
 		return nom;
 	}
@@ -102,6 +101,4 @@ public class Individu {
 	public String getPrenom() {
 		return prenom;
 	}
-
->>>>>>> da6314d86d896f9c49dc2779ab3818a95822ac62
 }
