@@ -101,4 +101,6 @@ public class Individu {
 	public String getPrenom() {
 		return prenom;
 	}
+	
+	
 }
