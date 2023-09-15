@@ -113,7 +113,7 @@ public class MatriceCreuse {
     
     /** Affiche les coefficients non nul */
     public void afficher() {
-        String template = "Ligne : %d | Colonne : %d | Valeur : %d%n";
+        String template = "Ligne : %d | Colonne : %d | Valeur : %f%n";
         for (Coefficient coefficient : donnee) {
             System.out.printf(template,coefficient.getLigne(), 
                     coefficient.getColonne(), coefficient.getValeur());
@@ -124,10 +124,17 @@ public class MatriceCreuse {
      * TODO comment method role
      * @param facteur
      */
-    public void multiplication(double facteur) {
-       for (Coefficient coefficient : donnee) {
-           coefficient.setValeur(coefficient.getValeur() * facteur);
-       } 
+    public MatriceCreuse multiplier(double facteur) {
+        
+       MatriceCreuse resultat = new MatriceCreuse(hauteur, largeur);
+       
+       for (int i = 1; i < resultat.hauteur; i++) {
+           for (int j = 1; j < resultat.largeur; j++) {
+               resultat.setValeur(i, j, getValeur(i, j) * facteur);
+           }
+       }
+        
+       return resultat;
     }
     
     /**
@@ -135,14 +142,31 @@ public class MatriceCreuse {
      * @param mat2
      * @return renvoie Une matrice resultant de l'addition de mat1 et mat2
      */
-    public MatriceCreuse addition(MatriceCreuse mat1, MatriceCreuse mat2) {
-        if (mat1.hauteur != mat2.hauteur || mat1.largeur == mat2.largeur) {
+    public static MatriceCreuse addition(MatriceCreuse mat1, MatriceCreuse mat2) {
+        if (mat1.hauteur != mat2.hauteur || mat1.largeur != mat2.largeur) {
             throw new IllegalArgumentException("Erreur : Les deux matrice ne "
                     + "$sont pas de la même dimensions");
         }
         
         MatriceCreuse resultat = new MatriceCreuse(mat1.hauteur,mat1.largeur);
         
+        for (int i = 1; i < resultat.hauteur; i++) {
+            for (int j = 1; j < resultat.largeur; j++) {
+                resultat.setValeur(i, j, 
+                        mat1.getValeur(i, j) + mat2.getValeur(i, j));
+            }
+        }
+        
+        return resultat;
+    }
+
+    /** TODO comment method role
+     * @param a
+     * @param m1
+     * @return
+     */
+    public static MatriceCreuse multiplication(MatriceCreuse a, MatriceCreuse m1) {
+        // TODO Auto-generated method stub
         return null;
     }
 }

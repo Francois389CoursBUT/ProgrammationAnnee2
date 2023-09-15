@@ -376,11 +376,11 @@ public class TestMatricePartie2 {
      */
     public static void main(String[] args) {
         System.out.println("TEST METHODES DE CALCUL -  CLASSE MATRICE CREUSE\n\n");
-        // testMultiplier();
-        // testAddition();
-        // testAdditionComplementaire();
-        // testMultiplication();
-        // testProduitComplementaire();
+         testMultiplier();
+         testAddition();
+         testAdditionComplementaire();
+         testMultiplication();
+         testProduitComplementaire();
     }
 }
 
