@@ -13,7 +13,7 @@ package structuredonnees.matrice;
  * @author INFO2
  * @version 1.0
  */
-public class Coefficient {
+public class Coefficient implements Comparable<Coefficient>{
 
     /** Attribut représentant la ligne sur laquelle se situe le coefficient */
     private int ligne;
@@ -86,7 +86,7 @@ public class Coefficient {
     }
 
     /**
-     * Renvoie une chaîne de caractères contenant les informations connues sur
+     * Renvoie une chaîne de caract�res contenant les informations connues sur
      * le coefficient
      * @return une chaîne avec les informations
      */
@@ -103,6 +103,14 @@ public class Coefficient {
      */
     public boolean estSitue(int numLigne, int numColonne) {
         return ligne == numLigne && colonne == numColonne;
+    }
+
+    /* non javadoc - @see java.lang.Comparable#compareTo(java.lang.Object) */
+    @Override
+    public int compareTo(Coefficient o) {
+        return ligne != o.ligne ? ligne - o.ligne 
+                                : colonne != o.colonne ? colonne - o.colonne
+                                                       : 0;
     }
 
 }
