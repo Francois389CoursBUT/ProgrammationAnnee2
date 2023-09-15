@@ -3,7 +3,7 @@
  * IUT de Rodez, info1 2022-2023, aucun copyright ni copyleft
  */
 
-package structuredonnees;
+package structuredonnees.pile;
 
 /** 
  * Représente une pile de FIFO

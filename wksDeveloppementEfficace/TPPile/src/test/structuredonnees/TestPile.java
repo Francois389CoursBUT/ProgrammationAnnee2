@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import structuredonnees.Pile;
+import structuredonnees.pile.Pile;
 
 /** TODO comment class responsibility (SRP)
- * @author francois.desaintpala
+ * @author François de Saint Palais
  *
  */
 class TestPile {

@@ -7,7 +7,7 @@
  */
 package test.structuredonnees;
 
-import structuredonnees.Pile;
+import structuredonnees.pile.Pile;
 
 /**
  * Tests de base pour la classe Pile.
