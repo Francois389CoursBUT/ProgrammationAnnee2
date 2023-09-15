@@ -3,7 +3,6 @@
  */
 package heritage;
 
-import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -53,6 +52,7 @@ public class Main {
 			System.out.println();
 		}
 		
+		entree.close();
 	}
 
 	private static boolean contient (Individu[] liste, Individu individuTeste) {
