@@ -80,16 +80,18 @@ public class Pile {
     
     /**
      * Retire le sommet de la pile
+     * @return la Pile modifier
      * @throws IllegalStateException Si la pile est vide, 
      * on ne peut pas enlever ce qui n'existe pas
      */
-    public void depiler () {
+    public Pile depiler () {
         if (estVide()) {
             throw new IllegalStateException("La pile est vide.");
         }
         /* On met le sommet à zéro */ 
         donnee[sommet] = 0;
         sommet--;
+        return this;
     }
 
     /* non javadoc - @see java.lang.Object#toString() */
@@ -124,8 +126,8 @@ public class Pile {
         if (getClass() != obj.getClass())
             return false;
         Pile other = (Pile) obj;
-        if (donnee.length == other.donnee.length) {
-            for (int i = 0; i < donnee.length && memeContenue; i++) {
+        if (capacite == other.capacite) {
+            for (int i = 0; i < capacite && memeContenue; i++) {
                 memeContenue = donnee[i] == other.donnee[i];
             }            
         }
