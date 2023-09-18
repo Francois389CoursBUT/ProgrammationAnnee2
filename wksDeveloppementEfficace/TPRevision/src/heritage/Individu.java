@@ -94,10 +94,11 @@ public class Individu {
     }
 
 
+    /** @return le nom de l'individu*/
 	public String getNom() {
 		return nom;
 	}
-
+ /** @return le prenom de l'individu */
 	public String getPrenom() {
 		return prenom;
 	}

@@ -153,6 +153,7 @@ public class TestPileComplet {
      * Test des méthodes de la classe Pile. Dans ce test, on vérifie que les
      * exceptions attendues sont bien propagées par les méthodes de la classe Pile
      */
+    @SuppressWarnings("unused")
     private static void testDesExceptions() {        
         int testOk = 0;                     // nombre de tests corrects
         

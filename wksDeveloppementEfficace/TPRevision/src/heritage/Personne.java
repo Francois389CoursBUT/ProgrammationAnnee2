@@ -17,11 +17,11 @@ public class Personne extends Individu {
     
     private String addresseMail;
 
-    
     private static Scanner entree = new Scanner(System.in);   
 
-    /** TODO comment initial state properties
-     * 
+    /**
+     * Contructeur par défaut, 
+     * qui initialise les paramétres avec des valuers par défaut
      */
     public Personne() {
         super();
@@ -29,11 +29,24 @@ public class Personne extends Individu {
     }
     
 
+    /**
+     * Constructeur d'une personne avec seulement son nom et prenom
+     * les autre paramétre sont initialisé âr défaut 
+     * @param nom
+     * @param prenom
+     */
     public Personne (String nom, String prenom) {
     	super(nom, prenom);
     	numero = new Telephone();
     }
     
+    /**
+     * Constructeur complet d'une personne
+     * @param nom
+     * @param prenom
+     * @param numeroTelephone
+     * @param addresseMail
+     */
     public Personne (String nom, String prenom, String numeroTelephone,String addresseMail) {
     	super(nom, prenom);
     	numero = new Telephone(numeroTelephone);
@@ -69,6 +82,7 @@ public class Personne extends Individu {
         } while (!correct);
     }
     
+    /** @return Renvoie une String contenant ses information personnel */
     public String information () {
     	return "Nom :............." + getNom() + "\n" +
     		   "Prenom :.........." + getPrenom() + "\n" +

@@ -41,9 +41,10 @@ public class TestMatricePartie1 {
     private static final double[] A_INSERER = { 10.5, 6, 5.3 };
     
     
-    /*
+    /**
      * Test du constructeur avec argument
      */
+    @SuppressWarnings("unused")
     public static void testConstructeur() {
         
         // jeux de données avec des dimensions incorrectes et correctes
@@ -217,6 +218,7 @@ public class TestMatricePartie1 {
      * Test de la méthode getValeur avec des coordonnées incorrectes
      * @param aTester  matrice sur laquelle portent les tests
      */
+    @SuppressWarnings("unused")
     private static void testGetValeurCoordonneeIncorrecte(MatriceCreuse aTester) {        
         int nbTestOk;                   // nombre de tests réussis
         double valeurCourante;          // valeur d'un coefficient de la matrice

@@ -4,13 +4,9 @@
  */
 package structuredonnees.matrice;
 
-import static org.junit.Assert.assertTrue;
-
-import org.junit.jupiter.api.Test;
-
 /**
- * Programme de test de la classe MatriceCreuse qui représente une matrice creuse.
- * Seules les opérations de la partie 2 du TP sont testées.
+ * Programme de test de la classe MatriceCreuse qui reprï¿½sente une matrice creuse.
+ * Seules les opï¿½rations de la partie 2 du TP sont testï¿½es.
  *    - multiplication de la matrice par un coefficient
  *    - addition de 2 matrices
  *    - multiplication de 2 matrices
@@ -20,28 +16,28 @@ import org.junit.jupiter.api.Test;
  */
 public class TestMatricePartie2 {
     
-    /** Dimension des matrices carrées M1  et M2 utilisées pour les tests */
+    /** Dimension des matrices carrï¿½es M1  et M2 utilisï¿½es pour les tests */
     private static final int DIMENSION_M = 5;
         
     /** 
-     * jeux de données avec les coordonnées oÃ¹ seront placées des valeurs
-     *  non nulles dans la matrice carrée M1        
+     * jeux de donnï¿½es avec les coordonnï¿½es oÃ¹ seront placï¿½es des valeurs
+     *  non nulles dans la matrice carrï¿½e M1        
      */
     private static final int[][] COORDONNEES_M1 = { {1, 2}, {3, 3}, {4, 1} };
     
     /**
-     * Jeu de données avec les valeurs des coefficients non nuls de la matrice M1
+     * Jeu de donnï¿½es avec les valeurs des coefficients non nuls de la matrice M1
      */
     private static final double[] A_INSERER_M1 = { 10.5, 6, 5.3 };
         
     /** 
-     * jeux de données avec les coordonnées oÃ¹ seront placées des valeurs
-     *  non nulles dans la matrice carrée M2        
+     * jeux de donnï¿½es avec les coordonnï¿½es oÃ¹ seront placï¿½es des valeurs
+     *  non nulles dans la matrice carrï¿½e M2        
      */
     private static final int[][] COORDONNEES_M2 = { {1, 3}, {3, 3}, {3, 4}, {4, 1}, {5, 5} };
     
     /**
-     * Jeu de données avec les valeurs des coefficients non nuls de la matrice M2
+     * Jeu de donnï¿½es avec les valeurs des coefficients non nuls de la matrice M2
      */
     private static final double[] A_INSERER_M2 = { -2, -6, 9, 2.2, 1 };
     
@@ -53,13 +49,13 @@ public class TestMatricePartie2 {
     private static final int COLONNE_A = 4;    
         
     /** 
-     * Jeu de données avec les coordonnées oÃ¹ seront placées des valeurs
+     * Jeu de donnï¿½es avec les coordonnï¿½es oÃ¹ seront placï¿½es des valeurs
      *  non nulles dans la matrice A        
      */
     private static final int[][] COORDONNEES_A = { {1, 1}, {2, 3}, {3, 4} };
     
     /**
-     * Jeu de données avec les valeurs des coefficients non nuls de la matrice A 
+     * Jeu de donnï¿½es avec les valeurs des coefficients non nuls de la matrice A 
      */
     private static final double[] A_INSERER_A = { 4, -1, 9};
    
@@ -71,23 +67,23 @@ public class TestMatricePartie2 {
     private static final int COLONNE_B = 4;    
         
     /** 
-     * Jeu de données avec les coordonnées oÃ¹ seront placées des valeurs
+     * Jeu de donnï¿½es avec les coordonnï¿½es oÃ¹ seront placï¿½es des valeurs
      *  non nulles dans la matrice B        
      */
     private static final int[][] COORDONNEES_B = { {1, 2}, {2, 3}, {4, 1}, {4, 4} };
     
     /**
-     * Jeu de données avec les valeurs des coefficients non nuls de la matrice B 
+     * Jeu de donnï¿½es avec les valeurs des coefficients non nuls de la matrice B 
      */
     private static final double[] A_INSERER_B = { 4, 5, -5, 2};
     
     
     /**
      * Initialise une matrice
-     * @param aInitiliaser  matrice Ã  initialiser (elle doit déjÃ  Ãªtre
-     *                      créée Ã  l'appel de la méthode)
-     * @param valeur    valeur des coefficients Ã  insérer dans la matrice
-     * @param position  coordonnées des coefficients Ã  insérer dans la matrice
+     * @param aInitiliaser  matrice Ã  initialiser (elle doit dï¿½jÃ  Ãªtre
+     *                      crï¿½ï¿½e Ã  l'appel de la mï¿½thode)
+     * @param valeur    valeur des coefficients Ã  insï¿½rer dans la matrice
+     * @param position  coordonnï¿½es des coefficients Ã  insï¿½rer dans la matrice
      */
     private static void initMatrice(MatriceCreuse aInitialiser, double[] valeur,
                                     int[][] position) {        
@@ -98,40 +94,40 @@ public class TestMatricePartie2 {
     
     
     /**
-     * Test de la méthode qui multiplie la matrice par un facteur
+     * Test de la mï¿½thode qui multiplie la matrice par un facteur
      */
     public static void testMultiplier() {
-        MatriceCreuse aTester = null;         // matrice utilisée pour les tests
-        MatriceCreuse resultat = null;        // matrice résultat de la multiplication
+        MatriceCreuse aTester = null;         // matrice utilisï¿½e pour les tests
+        MatriceCreuse resultat = null;        // matrice rï¿½sultat de la multiplication
         
         System.out.println("Test de la multiplication par un facteur : \n"
                            + "-------------------------------------------\n\n"
-                           + "Tests visuels : vérifiez les résultats affichés.\n\n");
+                           + "Tests visuels : vï¿½rifiez les rï¿½sultats affichï¿½s.\n\n");
         
         /* TEST 1 : on multiplie par 0 */
         aTester = new MatriceCreuse(DIMENSION_M, DIMENSION_M);        
         resultat = aTester.multiplier(0);
         
-        System.out.println("MatriceCreuse nulle multipliée par 0 = ");
+        System.out.println("MatriceCreuse nulle multipliï¿½e par 0 = ");
         resultat.afficher();
         
         initMatrice(aTester, A_INSERER_M1, COORDONNEES_M1);
         System.out.println("\nMatrice M1 initiale = ");
         aTester.afficher();
         
-        System.out.println("\n\nMatrice M1 multipliée par 0 = ");
+        System.out.println("\n\nMatrice M1 multipliï¿½e par 0 = ");
         resultat = aTester.multiplier(0);
         resultat.afficher();
         
         /* TEST 2 : on multiplie par 2 */
         aTester = new MatriceCreuse(DIMENSION_M, DIMENSION_M);        
                
-        System.out.println("\nMatrice nulle multipliée par 2 = ");
+        System.out.println("\nMatrice nulle multipliï¿½e par 2 = ");
         resultat = aTester.multiplier(2);
         resultat.afficher();
         
         initMatrice(aTester, A_INSERER_M1, COORDONNEES_M1);
-        System.out.println("\nMatrice M1 multipliée par 2 = ");
+        System.out.println("\nMatrice M1 multipliï¿½e par 2 = ");
         initMatrice(aTester, A_INSERER_M1, COORDONNEES_M1);
         resultat = aTester.multiplier(2);        
         resultat.afficher();        
@@ -143,21 +139,21 @@ public class TestMatricePartie2 {
      */
     public static void testAddition() {
         MatriceCreuse m1, m2;         // 2 matrices qu'il est possible d'additionner
-        MatriceCreuse somme;          // résultat de l'additon de 2 matrices
-        MatriceCreuse a, b;           // matrices de tailles différentes : addition impossible
+        MatriceCreuse somme;          // rï¿½sultat de l'additon de 2 matrices
+        MatriceCreuse a, b;           // matrices de tailles diffï¿½rentes : addition impossible
         
         System.out.println("\nTest de l'addition entre 2 matrices : \n"
                            + "---------------------------------------\n");
 
-        /* TEST 1 : on tente d'addtionner des matrices de tailles différentes */
-        System.out.println("   => Test 1 : addition matrices tailles différentes :\n"
-                           + "      Vous devez vérifier que le message d'erreur" 
-                           + "  est affiché correctement.\n");        
+        /* TEST 1 : on tente d'addtionner des matrices de tailles diffï¿½rentes */
+        System.out.println("   => Test 1 : addition matrices tailles diffï¿½rentes :\n"
+                           + "      Vous devez vï¿½rifier que le message d'erreur" 
+                           + "  est affichï¿½ correctement.\n");        
         try {
             a = new MatriceCreuse(LIGNE_A, COLONNE_A);
             b = new MatriceCreuse(LIGNE_B, COLONNE_B);
             somme = MatriceCreuse.addition(a, b);
-            System.out.println("ERREUR : l'addition a été jugée possible.");
+            System.out.println("ERREUR : l'addition a ï¿½tï¿½ jugï¿½e possible.");
         } catch(IllegalArgumentException erreur) {
             System.out.println(erreur.getMessage());
         }
@@ -207,9 +203,10 @@ public class TestMatricePartie2 {
     /**
      * Programme de test de la multiplication entre 2 matrices
      */
+    @SuppressWarnings("unused")
     public static void testMultiplication() {
         MatriceCreuse a, b;           // 2 matrices qu'il est possible de multiplier
-        MatriceCreuse produit;        // résultat de la multiplication des 2 matrices
+        MatriceCreuse produit;        // rï¿½sultat de la multiplication des 2 matrices
         MatriceCreuse m1, m2;         // 2 matrices de mÃªme taille qui peuvent se multiplier
         
         System.out.println("\nTest de la multiplication entre 2 matrices : \n"
@@ -217,13 +214,13 @@ public class TestMatricePartie2 {
 
         /* TEST 1 : on tente de multiplier des matrices de tailles incompatibles */
         System.out.println("   => Test 1 : multiplication matrices tailles incompatibles :\n"
-                           + "      Vous devez vérifier que le message d'erreur" 
-                           + "  est affiché correctement.\n");        
+                           + "      Vous devez vï¿½rifier que le message d'erreur" 
+                           + "  est affichï¿½ correctement.\n");        
         try {
             a = new MatriceCreuse(LIGNE_A, COLONNE_A);
             m1 = new MatriceCreuse(DIMENSION_M, DIMENSION_M);
             produit = MatriceCreuse.multiplication(a, m1);
-            System.out.println("ERREUR : la multiplication a été jugée possible.");
+            System.out.println("ERREUR : la multiplication a Ã©tÃ© jugÃ©e possible.");
         } catch(IllegalArgumentException erreur) {
             System.out.println(erreur.getMessage());
         }
@@ -280,17 +277,17 @@ public class TestMatricePartie2 {
     
     
     /**
-     * Autre test pour l'addition : les 2 matrices opérandes sont configurées
+     * Autre test pour l'addition : les 2 matrices opï¿½randes sont configurï¿½es
      * de telle sorte que l'ajout de 2 coefficients donne la valeur 0, Ã  plusieurs
-     * reprise. Le but est de bien vérifier que ce coefficient nul n'est pas ajouté
-     * dans la liste des coefficients de la matrice résultat
+     * reprise. Le but est de bien vï¿½rifier que ce coefficient nul n'est pas ajoutï¿½
+     * dans la liste des coefficients de la matrice rï¿½sultat
      */
     public static void testAdditionComplementaire() {
         try {
             MatriceCreuse mat1 = new MatriceCreuse(50,50);
             MatriceCreuse mat2 = new MatriceCreuse(50,50);
             
-            // préparation de mat1
+            // prï¿½paration de mat1
             mat1.setValeur(1, 2, 5); 
             mat1.setValeur(2, 1, 1); 
             mat1.setValeur(2, 4, 7); 
@@ -298,7 +295,7 @@ public class TestMatricePartie2 {
             mat1.setValeur(4, 2, 8); 
             mat1.setValeur(4, 5, 5); 
             
-            // préparation de mat2
+            // prï¿½paration de mat2
             mat2.setValeur(1, 3, 3); 
             mat2.setValeur(2, 1, -1); 
             mat2.setValeur(2, 4, 7); 
@@ -308,11 +305,11 @@ public class TestMatricePartie2 {
             mat2.setValeur(4, 4, 1); 
             mat2.setValeur(4, 5, -5); 
             
-            // affichage des matrices mat1, mat2 et du résultat
-            System.out.println("\nTest complémentaire de l'addition entre 2 matrices : \n"
+            // affichage des matrices mat1, mat2 et du rï¿½sultat
+            System.out.println("\nTest complï¿½mentaire de l'addition entre 2 matrices : \n"
                     + "-----------------------------------------------------\n\n"
-                    + "      Vous devez vérifier que la somme des 2 matrices est correcte. \n"
-                    + "      (en particulier qu'il n'y a pas de coef. nul dans le résultat.");
+                    + "      Vous devez vï¿½rifier que la somme des 2 matrices est correcte. \n"
+                    + "      (en particulier qu'il n'y a pas de coef. nul dans le rï¿½sultat.");
       
             System.out.println("\nMatrice mat1 = ");
             mat1.afficher();
@@ -324,41 +321,41 @@ public class TestMatricePartie2 {
             System.out.println("\n\nMatrice addition = ");
             addition.afficher();
         } catch (IllegalArgumentException erreur) {
-            System.out.println("ERREUR : l'exception levée alors que ce n'est pas nécessaire.");
+            System.out.println("ERREUR : l'exception levï¿½e alors que ce n'est pas nï¿½cessaire.");
         }
     }
     
     
     /**
-     * Autre test pour l'addition : les 2 matrices opérandes sont configurées
+     * Autre test pour l'addition : les 2 matrices opï¿½randes sont configurï¿½es
      * de telle sorte que la multiplication engendre, Ã  plusieurs
-     * reprise, un résultat nul. Le but est de bien vérifier que ce coefficient nul 
-     * n'est pas ajouté dans la liste des coefficients de la matrice résultat
+     * reprise, un rï¿½sultat nul. Le but est de bien vï¿½rifier que ce coefficient nul 
+     * n'est pas ajoutï¿½ dans la liste des coefficients de la matrice rï¿½sultat
      */
     private static void testProduitComplementaire() {
         try {
             MatriceCreuse a = new MatriceCreuse(4, 4);
             MatriceCreuse b = new MatriceCreuse(4, 3);
             
-            // préparation de mat1
+            // prï¿½paration de mat1
             a.setValeur(1, 1, 2);
             a.setValeur(1, 4, 3);
             a.setValeur(2, 3, 1);
             a.setValeur(3, 2, 2);
             a.setValeur(4, 4, 5);                
             
-            // préparation de mat2
+            // prï¿½paration de mat2
             b.setValeur(1, 2, -3);
             b.setValeur(1, 3, 6);
             b.setValeur(4, 1, -1);
             b.setValeur(4, 2, 2);
             b.setValeur(4, 3, -4);
             
-            // affichage des matrices mat1, mat2 et du résultat
-            System.out.println("\n\n\nTest complémentaire multiplication entre 2 matrices :\n"
+            // affichage des matrices mat1, mat2 et du rï¿½sultat
+            System.out.println("\n\n\nTest complï¿½mentaire multiplication entre 2 matrices :\n"
                     + "-----------------------------------------------------\n\n"
-                    + "      Vous devez vérifier que la multiplication est correcte. \n"
-                    + "      (en particulier qu'il n'y a pas de coef. nul dans le résultat.");
+                    + "      Vous devez vï¿½rifier que la multiplication est correcte. \n"
+                    + "      (en particulier qu'il n'y a pas de coef. nul dans le rï¿½sultat.");
       
             
             System.out.println("\nMatrice A = ");
@@ -367,7 +364,7 @@ public class TestMatricePartie2 {
             b.afficher();
             
             MatriceCreuse resultat = MatriceCreuse.multiplication(a, b);
-            System.out.println("\nRésultat = ");
+            System.out.println("\nRï¿½sultat = ");
             resultat.afficher();
         } catch(IllegalArgumentException erreur) {
             System.out.println("Exception");
@@ -375,7 +372,7 @@ public class TestMatricePartie2 {
     }
     
     /**
-     * Test de la méthode compareTo de la class Coefficient
+     * Test de la mï¿½thode compareTo de la class Coefficient
      */
     private static void testComparTo() {
         boolean testPasser = true;
@@ -394,16 +391,16 @@ public class TestMatricePartie2 {
     }
 
     /**
-     * Programme principal permettant de lancer les procédures de test
-     * @param args  argument non utilisé
+     * Programme principal permettant de lancer les procï¿½dures de test
+     * @param args  argument non utilisï¿½
      */
     public static void main(String[] args) {
         System.out.println("TEST METHODES DE CALCUL -  CLASSE MATRICE CREUSE\n\n");
-//         testMultiplier();
-//         testAddition();
-//         testAdditionComplementaire();
-//         testMultiplication();
-//         testProduitComplementaire();
+        testMultiplier();
+        testAddition();
+        testAdditionComplementaire();
+        testMultiplication();
+        testProduitComplementaire();
         testComparTo();
     }
 
