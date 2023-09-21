@@ -8,14 +8,13 @@ package structuredonnees.ensemble;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-/** TODO comment class responsibility (SRP)
- * @author FranÃ§ois de Saint Palais
- *
+/**
+ * @author François de Saint Palais
  */
 public class Pays {
 
     private String nom;
-    
+
     private TreeSet<String> paysLimitrophe;
 
     /**
@@ -28,7 +27,7 @@ public class Pays {
             throw new IllegalArgumentException("Erreur : Nom saisie invalide");
         }
         this.nom = nom;
-        paysLimitrophe = new TreeSet<String>();
+        paysLimitrophe = new TreeSet<>();
     }
 
     /** TODO comment initial state properties
@@ -41,13 +40,12 @@ public class Pays {
             throw new IllegalArgumentException("Erreur : Nom saisie invalide");
         }
         this.nom = nom;
-        this.paysLimitrophe = new TreeSet<String>();
+        this.paysLimitrophe = new TreeSet<>();
         for (String pays : paysLimitrophe) {
             if (!nomValide(pays)) {
                 throw new IllegalArgumentException(
                         String.format("Erreur : %s est un nom invalide", pays));
             }
-            System.out.println(pays);
             this.paysLimitrophe.add(pays);
         }
     }
@@ -57,7 +55,7 @@ public class Pays {
     public String toString() {
         return nom + " a pour voisin : " + paysLimitrophe;
     }
-    
+
     /**
      * Ajoute a la liste des nom de pays voisin, nom
      * @param nom
@@ -68,7 +66,7 @@ public class Pays {
         }
         paysLimitrophe.add(nom);
     }
-    
+
     /**
      * @param nomTeste
      * @return true si nomTeste est voisin du pays et false sinon
@@ -76,24 +74,31 @@ public class Pays {
     public boolean aPourVoisin (String nomTeste) {
         return paysLimitrophe.contains(nomTeste);
     }
-    
+
     /**
+     * Indique si les pays de la liste sont tous voisins de this.
+     * Un pays peut être présent plusieur fois dans la liste.
      * @param listeVoisin
-     * @return true si la liste contient tous les voisin du pays courant
+     * @return true si la liste contient au minimum tous les voisin du pays courant.
      */
     public boolean aPourVoisin(ArrayList<String> listeVoisin) {
-        boolean estVoisin = true;
-        for (String string : listeVoisin) {
-            estVoisin &= paysLimitrophe.contains(string);
+        boolean sontVoisins;
+
+        /* Si la liste testé est plus petite que celle du pays alors
+         * il manque des pays
+         */
+        sontVoisins = paysLimitrophe.size() <= listeVoisin.size();
+        for (String possibleVoisin : listeVoisin) {
+            sontVoisins &= this.aPourVoisin(possibleVoisin);
         }
-        return estVoisin;
+        return sontVoisins;
     }
-    
+
     /** @return le nombre de voisin du pays courant */
     public int nombreVoisin() {
         return paysLimitrophe.size();
     }
-    
+
     /**
      * @param listeATester
      * @return le nombre de pays de la liste qui sont voisin du pays courant
@@ -105,9 +110,8 @@ public class Pays {
         }
         return cpt;
     }
-    
 
-    /** 
+    /**
      * @param nom
      * @return true si le nom est valide false sinon
      */
@@ -118,6 +122,16 @@ public class Pays {
         return !nom.isBlank();
     }
 
-    
-    
+    /** @return Le nom du pays */
+    public String getNom() {
+        return nom;
+    }
+
+    /** @return L'ensemble des pays voisins */
+    public TreeSet<String> getPaysLimitrophe() {
+        return paysLimitrophe;
+    }
+
+
+
 }

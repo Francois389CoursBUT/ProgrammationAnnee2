@@ -11,148 +11,148 @@ import structuredonnees.ensemble.Pays;
 
 
 /**
- * Tests unitaires des principales mÃ©thodes de la classe Pays
- * @author C. ServiÃ¨res
+ * Tests unitaires des principales méthodes de la classe Pays
+ * @author C. Serviéres
  * @version 1.0
  */
 public class TestPays {
-    
+
     /** Noms de pays invalides */
     private static final String[] NOM_PAYS_INVALIDE = { null, "", " ", "      "};
-    
+
     /** Exemples de noms de pays valides */
     private static final String[] NOM_PAYS_VALIDE = { "France", "Espagne", "Italie", "Australie"};
-    
-   
-    
-    /** tableau contenant les noms des pays utilisÃ©s pour les tests les plus complets */
-    private static final String[] NOM_DES_PAYS = { "France", "Royaume-Uni", "Irlande", "Espagne", 
+
+
+
+    /** tableau contenant les noms des pays utilisés pour les tests les plus complets */
+    private static final String[] NOM_DES_PAYS = { "France", "Royaume-Uni", "Irlande", "Espagne",
                             "Allemagne", "Hongrie", "Pologne",
                             "Argentine", "Chili", "Perou", "Canada"};
 
-    /** 
+    /**
      * tableau contenant les noms des pays voisins de ceux contenus dans
-     * le tableau prÃ©cÃ©dent NOM_DES_PAYS
+     * le tableau précédent NOM_DES_PAYS
      */
     private static final String [][] VOISINS = {
             { "Espagne", "Italie", "Suisse", "Allemagne", "Luxembourg", "Belgique" },
             { "Irlande" },
             { "Royaume-Uni" },
             { "Portugal", "France" },
-            { "Danemark", "Pologne", "Republique Tcheque", "Autriche", 
+            { "Danemark", "Pologne", "Republique Tcheque", "Autriche",
               "Suisse", "France", "Luxembourg", "Belgique", "Pays-Bas" },
             { "Slovaquie", "Ukraine", "Roumanie", "Serbie", "Croatie", "Slovenie",
               "Autriche" },
-            { "Russie", "Lituanie", "Bielorussie", "Ukraine", 
+            { "Russie", "Lituanie", "Bielorussie", "Ukraine",
               "Slovaquie", "Republique Tcheque", "Allemagne" },
             { "Uruguay", "Bresil", "Paraguay", "Bolivie", "Chili"},
             { "Argentine", "Bolivie", "Perou"},
             { "Chili", "Bolivie", "Bresil", "Colombie", "Equateur"},
-            { "Etats-Unis" } };         
+            { "Etats-Unis" } };
 
-    
+
     /* ===================================================================== */
-    /*                     mÃ©thode outil pour gÃ©rer les tests                */
+    /*                     méthode outil pour gérer les tests                */
     /* ===================================================================== */
-    
-    
+
+
     /**
-     * Affiche le rÃ©sultat d'un test : le nombre de tests rÃ©ussis et le 
+     * Affiche le résultat d'un test : le nombre de tests réussis et le
      * nombre de tests total
-     * @param nbTestTotal       nombre total de tests effectuÃ©s
-     * @param nbTestOk          nombre de tests rÃ©ussis
+     * @param nbTestTotal       nombre total de tests effectués
+     * @param nbTestOk          nombre de tests réussis
      */
     private static void afficherResultatTest(int nbTestTotal, int nbTestOk) {
-        System.out.println("\n" + nbTestOk + " test(s) ont rÃ©ussi sur un total de "
-                + nbTestTotal + " tests rÃ©alisÃ©s.\n   ==>  "
+        System.out.println("\n" + nbTestOk + " test(s) ont réussi sur un total de "
+                + nbTestTotal + " tests réalisés.\n   ==>  "
                 + ((nbTestOk == nbTestTotal) ?
-                        "Tous les tests sont OK" 
-                        : (nbTestTotal - nbTestOk) + " test(s) ont Ã©chouÃ©.") + "\n");
+                        "Tous les tests sont OK"
+                        : (nbTestTotal - nbTestOk) + " test(s) ont échoué.") + "\n");
     }
-    
 
-    
+
+
     /* ===================================================================== */
     /*                            Tests des constructeurs                    */
     /* ===================================================================== */
-    
-    
+
+
     /**
      * Permet de tester que le constructeur avec un seul argument lÃ¨ve (ou pas)
-     * l'exception IllegalArgumentException Ã  bon escient
+     * l'exception IllegalArgumentException à  bon escient
      */
-    public static void testConstructeur1ArgumentException() {        
+    public static void testConstructeur1ArgumentException() {
         System.out.println("Test du constructeur ayant 1 argument\n"
                            + "-------------------------------\n");
         int nbTestOk;      // nombre de tests corrects
-        Pays aTester;      // test effectuÃ© pour ce pays      
-        
-        // vÃ©rification qu'aucune exception n'est levÃ©e si le nom du pays est valide
+        Pays aTester;      // test effectué pour ce pays
+
+        // vérification qu'aucune exception n'est levée si le nom du pays est valide
         nbTestOk = 0;
-        for (int i = 0; i < NOM_PAYS_VALIDE.length; i++) {
+        for (String element : NOM_PAYS_VALIDE) {
             try {
-                aTester = new Pays(NOM_PAYS_VALIDE[i]);
+                aTester = new Pays(element);
                 nbTestOk++;
             } catch(IllegalArgumentException erreur) {
-                System.out.println("Echec du test pour le pays " + NOM_PAYS_VALIDE[i]);
+                System.out.println("Echec du test pour le pays " + element);
             }
         }
-        
-        // vÃ©rification qu'une exception est levÃ©e si le nom du pays est invalide
-        for (int i = 0; i < NOM_PAYS_INVALIDE.length; i++) {
+
+        // vérification qu'une exception est levée si le nom du pays est invalide
+        for (String element : NOM_PAYS_INVALIDE) {
             try {
-                aTester = new Pays(NOM_PAYS_INVALIDE[i]);
-                System.out.println("Echec du test pour le pays " + NOM_PAYS_INVALIDE[i]);
+                aTester = new Pays(element);
+                System.out.println("Echec du test pour le pays " + element);
             } catch(IllegalArgumentException erreur) {
                 nbTestOk++;
-                
+
             }
         }
-        
-        // rÃ©sultat du test
+
+        // résultat du test
         afficherResultatTest(NOM_PAYS_VALIDE.length + NOM_PAYS_INVALIDE.length, nbTestOk);
     }
-    
-    
+
+
     /**
      * Permet de tester que le constructeur avec 2 arguments lÃ¨ve (ou pas)
-     * l'exception IllegalArgumentException Ã  bon escient
+     * l'exception IllegalArgumentException à  bon escient
      */
     public static void testConstructeur2ArgumentsException() {
         System.out.println("Test du constructeur ayant 2 arguments\n"
                            + "------------------------------------\n");
         int nbTestOk;      // nombre de tests corrects
-        Pays aTester;      // test effectuÃ© pour ce pays      
-        
-        // vÃ©rification qu'aucune exception n'est levÃ©e si les noms de pays sont valides
+        Pays aTester;      // test effectué pour ce pays
+
+        // vérification qu'aucune exception n'est levée si les noms de pays sont valides
         nbTestOk = 0;
-        for (int i = 0; i < NOM_PAYS_VALIDE.length; i++) {
+        for (String element : NOM_PAYS_VALIDE) {
             try {
-                aTester = new Pays(NOM_PAYS_VALIDE[i], NOM_PAYS_VALIDE);
+                aTester = new Pays(element, NOM_PAYS_VALIDE);
                                    //i % 2 == 0 ? NOM_PAYS_VALIDE : new String[0]);
                 nbTestOk++;
             } catch(IllegalArgumentException erreur) {
-                System.out.println("Echec du test pour le pays " + NOM_PAYS_VALIDE[i]);
+                System.out.println("Echec du test pour le pays " + element);
             }
         }
-        
-        // vÃ©rification qu'une exception est levÃ©e si un nom de pays est invalide
+
+        // vérification qu'une exception est levée si un nom de pays est invalide
         // 1)  nom du pays principal invalide, et noms des pays voisins valides
-        for (int i = 0; i < NOM_PAYS_INVALIDE.length; i++) {
+        for (String element : NOM_PAYS_INVALIDE) {
             try {
-                aTester = new Pays(NOM_PAYS_INVALIDE[i], NOM_PAYS_VALIDE);
-                System.out.println("Echec du test pour le pays invalide" + NOM_PAYS_INVALIDE[i]);
+                aTester = new Pays(element, NOM_PAYS_VALIDE);
+                System.out.println("Echec du test pour le pays invalide" + element);
             } catch(IllegalArgumentException erreur) {
                 nbTestOk++;
-                
+
             }
         }
-        
+
         // 2)  nom du pays principal valide, et noms des pays voisins invalides
         String[] paysVoisinAvecInvalide = new String[NOM_PAYS_INVALIDE.length];
         for (int i = 0; i < NOM_PAYS_INVALIDE.length ; i++) {
             paysVoisinAvecInvalide[i] = NOM_PAYS_INVALIDE[i];
-        }        
+        }
         for (int i = 0; i < NOM_PAYS_INVALIDE.length; i++) {
             try {
                 paysVoisinAvecInvalide[2] = NOM_PAYS_INVALIDE[i];
@@ -161,88 +161,88 @@ public class TestPays {
                                    + " et son voisin invalide " + NOM_PAYS_INVALIDE[i]);
             } catch(IllegalArgumentException erreur) {
                 nbTestOk++;
-                
+
             }
         }
-        
-        // rÃ©sultat du test
+
+        // résultat du test
         afficherResultatTest(NOM_PAYS_VALIDE.length * 2 + NOM_PAYS_INVALIDE.length, nbTestOk);
     }
-    
-    
+
+
     /**
-     * Permet de tester que le constructeur avec un seul argument et la mÃ©thode toString
+     * Permet de tester que le constructeur avec un seul argument et la méthode toString
      * sont corects
      */
-    public static void testConstructeur1ArgumentToString() {        
+    public static void testConstructeur1ArgumentToString() {
         System.out.println("Test du constructeur ayant 1 argument et toString\n"
                            + "-------------------------------------------------\n");
-        Pays aTester;      // test effectuÃ© pour ce pays      
-        
-        System.out.println("*** Test Visuel ***  VÃ©rifiez l'affichage correct **** \n");
-        // vÃ©rification qu'aucune exception n'est levÃ©e si le nom du pays est valide
-   
-        for (int i = 0; i < NOM_PAYS_VALIDE.length; i++) {            
-             aTester = new Pays(NOM_PAYS_VALIDE[i]);
-             System.out.println("CrÃ©ation du pays " + NOM_PAYS_VALIDE[i] + " :\n     ==> "
+        Pays aTester;      // test effectué pour ce pays
+
+        System.out.println("*** Test Visuel ***  Vérifiez l'affichage correct **** \n");
+        // vérification qu'aucune exception n'est levée si le nom du pays est valide
+
+        for (String element : NOM_PAYS_VALIDE) {
+             aTester = new Pays(element);
+             System.out.println("Création du pays " + element + " :\n     ==> "
                                 + aTester);
         }
     }
-    
-    
+
+
     /**
-     * Permet de tester que le constructeur avec 2 arguments et la mÃ©thode toString
+     * Permet de tester que le constructeur avec 2 arguments et la méthode toString
      * sont corects
      */
-    public static void testConstructeur2ArgumentsToString() {        
+    public static void testConstructeur2ArgumentsToString() {
         System.out.println("Test du constructeur ayant 2 arguments et toString\n"
                            + "-------------------------------------------------\n");
-        Pays aTester;      // test effectuÃ© pour ce pays      
-        
-        System.out.println("*** Test Visuel ***  VÃ©rifiez l'affichage correct **** \n");
-        // vÃ©rification qu'aucune exception n'est levÃ©e si le nom du pays est valide
-   
-        for (int i = 0; i < NOM_DES_PAYS.length / 2; i++) {            
+        Pays aTester;      // test effectué pour ce pays
+
+        System.out.println("*** Test Visuel ***  Vérifiez l'affichage correct **** \n");
+        // vérification qu'aucune exception n'est levée si le nom du pays est valide
+
+        for (int i = 0; i < NOM_DES_PAYS.length / 2; i++) {
              aTester = new Pays(NOM_DES_PAYS[i], VOISINS[i] );
-             System.out.println("CrÃ©ation du pays " + NOM_DES_PAYS[i] + " :\n     ==> "
+             System.out.println("Création du pays " + NOM_DES_PAYS[i] + " :\n     ==> "
                                 + aTester);
         }
     }
-    
- 
-    
+
+
+
     /* ===================================================================== */
-    /*              Tests des mÃ©thodes portant sur les pays voisins          */
+    /*              Tests des méthodes portant sur les pays voisins          */
     /* ===================================================================== */
-    
-  
-    
+
+
+
     /**
-     * Permet de tester la mÃ©thode ajouterVoisin
+     * Permet de tester la méthode ajouterVoisin
      */
     public static void testAjouterVoisin() {
-        System.out.println("Test de la mÃ©thode ajouterVoisin \n"
+        System.out.println("Test de la méthode ajouterVoisin \n"
                            + "---------------------------------\n");
         int nbTestOk;      // nombre de tests corrects
-        Pays aTester;      // test effectuÃ© pour ce pays      
-        
-        // vÃ©rification qu'une exception est lÃ©vÃ©e, si le voisin est incorrect
+        Pays aTester;      // test effectué pour ce pays
+
+        // vérification qu'une exception est lévée, si le voisin est incorrect
         System.out.println("======> Ajout de voisins incorrects ....");
         nbTestOk = 0;
         aTester = new Pays("France");
-        for (int i = 0; i < NOM_PAYS_INVALIDE.length; i++) {
+        for (String element : NOM_PAYS_INVALIDE) {
             try {
-                aTester.ajouterVoisin(NOM_PAYS_INVALIDE[i]);
-                System.out.println("Echec du test pour le pays voisin " 
-                                   + NOM_PAYS_INVALIDE[i]);              
+                aTester.ajouterVoisin(element);
+                System.out.println("Echec du test pour le pays voisin "
+                                   + element);
             } catch(IllegalArgumentException erreur) {
                 nbTestOk++;
             }
         }
-        
-        // vÃ©rification qu'aucune exception est levÃ©e si pays voisin correct est ajoutÃ©
-        //  + vÃ©rification visuelle de l'ajout
-        System.out.println("\n======> Ajout de voisins corrects et pas encore prÃ©sents ....");
+
+        // vérification qu'aucune exception est levée si pays voisin correct est ajouté
+        //  + vérification visuelle de l'ajout
+        System.out.println("\n======> Ajout de voisins corrects et pas encore présents ....");
         for (int i = 0; i < VOISINS[0].length; i++) {
             try {
                 aTester.ajouterVoisin(VOISINS[0][i]);
@@ -250,13 +250,13 @@ public class TestPays {
                                    + " :\n     => " + aTester);
                 nbTestOk++;
             } catch(IllegalArgumentException erreur) {
-                
+
             }
         }
-        
-        // vÃ©rification qu'aucune exception est levÃ©e si pays voisin dÃ©jÃ  prÃ©sent est ajoutÃ©
-        //  + vÃ©rification visuelle qu'il n'est pas ajoutÃ© une 2Ã¨me fois
-        System.out.println("\n======> Ajout de voisins corrects et dÃ©jÃ  prÃ©sents ....");
+
+        // vérification qu'aucune exception est levée si pays voisin déjÃ  présent est ajouté
+        //  + vérification visuelle qu'il n'est pas ajouté une 2Ã¨me fois
+        System.out.println("\n======> Ajout de voisins corrects et déjÃ  présents ....");
         for (int i = 0; i < VOISINS[0].length; i++) {
             try {
                 aTester.ajouterVoisin(VOISINS[0][i]);
@@ -264,64 +264,64 @@ public class TestPays {
                                    + " :\n     => " + aTester);
                 nbTestOk++;
             } catch(IllegalArgumentException erreur) {
-                
+
             }
         }
-       
-        // rÃ©sultat du test
+
+        // résultat du test
         afficherResultatTest(NOM_PAYS_INVALIDE.length + VOISINS[0].length * 2, nbTestOk);
     }
-    
-    
+
+
     /**
-     * Permet de tester la mÃ©thode aPourVoisin
+     * Permet de tester la méthode aPourVoisin
      */
     public static void testAPourVoisin() {
-        System.out.println("Test de la mÃ©thode aPourVoisin \n"
+        System.out.println("Test de la méthode aPourVoisin \n"
                            + "-----------------------------\n");
         int nbTestOk;      // nombre de tests corrects
-        Pays aTester;      // test effectuÃ© pour ce pays      
-        
-        
+        Pays aTester;      // test effectué pour ce pays
+
+
         aTester = new Pays("France", VOISINS[0]);
-        System.out.println("Les tests se feront Ã  partir du pays " + aTester + "\n");
-        
-        // vÃ©rification que les voisins sont bien dÃ©tectÃ©s en tant que voisins
-        System.out.println("======> VÃ©rification des voisins ....");
+        System.out.println("Les tests se feront à  partir du pays " + aTester + "\n");
+
+        // vérification que les voisins sont bien détectés en tant que voisins
+        System.out.println("======> Vérification des voisins ....");
         nbTestOk = 0;
         for (int i = 0; i < VOISINS[0].length; i++) {
             if (aTester.aPourVoisin(VOISINS[0][i])) {
                 nbTestOk++;
             } else {
-                System.out.println("Echec du test pour le pays voisin " 
-                        + VOISINS[0][i]); 
+                System.out.println("Echec du test pour le pays voisin "
+                        + VOISINS[0][i]);
             }
         }
-        
-        // vÃ©rification que les non voisins sont bien dÃ©tectÃ©s en tant que non voisins
-        System.out.println("======> VÃ©rification des pays non voisins ....");
+
+        // vérification que les non voisins sont bien détectés en tant que non voisins
+        System.out.println("======> Vérification des pays non voisins ....");
         for (int i = 0; i < VOISINS[5].length; i++) {
             if (! aTester.aPourVoisin(VOISINS[5][i])) {
                 nbTestOk++;
             } else {
-                System.out.println("Echec du test pour le pays non voisin " 
-                        + VOISINS[5][i]); 
+                System.out.println("Echec du test pour le pays non voisin "
+                        + VOISINS[5][i]);
             }
         }
-        
-        // rÃ©sultat du test
+
+        // résultat du test
         afficherResultatTest(VOISINS[0].length + VOISINS[5].length, nbTestOk);
     }
-    
+
     /**
-     * Permet de tester la mÃ©thode nombreVoisin
+     * Permet de tester la méthode nombreVoisin
      */
     public static void testNombreVoisin() {
-        System.out.println("Test de la mÃ©thode nombreVoisin (test visuel) \n"
+        System.out.println("Test de la méthode nombreVoisin (test visuel) \n"
                            + "----------------------------------------------\n");
-        Pays aTester;      // test effectuÃ© pour ce pays      
-        
-        // vÃ©rification visuelle du nombre de voisins
+        Pays aTester;      // test effectué pour ce pays
+
+        // vérification visuelle du nombre de voisins
         System.out.println("\n======> Ajout de voisins et comptage ....");
         aTester = new Pays("France");
         System.out.println("Pour l'instant, le pays " + aTester + " ===> "
@@ -332,58 +332,58 @@ public class TestPays {
                         + aTester.nombreVoisin() + " voisins\n");
         }
     }
-    
-    
-    
+
+
+
     /* ===================================================================== */
-    /*          Tests des mÃ©thodes portant un groupe de pays voisins         */
+    /*          Tests des méthodes portant un groupe de pays voisins         */
     /* ===================================================================== */
-    
-   
+
+
     /**
-     * Permet de tester la mÃ©thode aPourVoisin avec en argument une liste de pays
+     * Permet de tester la méthode aPourVoisin avec en argument une liste de pays
      */
     public static void testAPourVoisinListePays() {
-        System.out.println("Test de la mÃ©thode aPourVoisin (argument ArrayList) \n"
+        System.out.println("Test de la méthode aPourVoisin (argument ArrayList) \n"
                            + "-----------------------------------------------------\n");
         int nbTestOk;      // nombre de tests corrects
-        Pays aTester;      // test effectuÃ© pour ce pays      
+        Pays aTester;      // test effectué pour ce pays
         ArrayList<String> listeATester = new ArrayList<>();
-        
+
         aTester = new Pays("France", VOISINS[0]);
-        System.out.println("Les tests se feront Ã  partir du pays " + aTester + "\n");
-        
-        // vÃ©rification que l'argument ne coincide pas avec les voisins 
+        System.out.println("Les tests se feront à  partir du pays " + aTester + "\n");
+
+        // vérification que l'argument ne coincide pas avec les voisins
         // (car 1 au moins pays manque)
-        System.out.println("======> VÃ©rification des voisins (il manque des voisins) ....");
+        System.out.println("======> Vérification des voisins (il manque des voisins) ....");
         nbTestOk = 0;
         for (int i = 0; i < VOISINS[0].length; i++) {
             if (aTester.aPourVoisin(listeATester)) {
-                System.out.println("Echec du test avec les voisins " 
-                        + listeATester); 
+                System.out.println("Echec du test avec les voisins "
+                        + listeATester);
             } else {
                 nbTestOk++;
             }
             listeATester.add(VOISINS[0][i]);
         }
-        
+
         // normalemnt : la liste coincide avec les voisins
-        System.out.println("======> VÃ©rification des voisins (ils coincident) ....");
+        System.out.println("======> Vérification des voisins (ils coincident) ....");
         if (aTester.aPourVoisin(listeATester)) {
             nbTestOk++;
         } else {
-            System.out.println("Echec du test avec les voisins " 
-                    + listeATester); 
+            System.out.println("Echec du test avec les voisins "
+                    + listeATester);
         }
-        
-        // vÃ©rification que l'argument ne coincide pas avec les voisins 
-        // (car 1 pays au moins est un trop et Ã©ventuellement 1 manque)
-        System.out.println("======> VÃ©rification des voisins (des voisins en trop) ....");
+
+        // vérification que l'argument ne coincide pas avec les voisins
+        // (car 1 pays au moins est un trop et éventuellement 1 manque)
+        System.out.println("======> Vérification des voisins (des voisins en trop) ....");
         for (int i = 0; i < VOISINS[5].length; i++) {
             listeATester.add(VOISINS[5][i]);
             if (aTester.aPourVoisin(listeATester)) {
-                System.out.println("Echec du test avec les voisins " 
-                        + listeATester); 
+                System.out.println("Echec du test avec les voisins "
+                        + listeATester);
             } else {
                 nbTestOk++;
             }
@@ -392,109 +392,157 @@ public class TestPays {
                 listeATester.remove(0);
             }
         }
-        
-        // rÃ©sultat du test
+
+        // résultat du test
         afficherResultatTest(VOISINS[0].length + VOISINS[5].length + 1, nbTestOk);
     }
-    
+
     /**
-     * Permet de tester la mÃ©thode nombreCommun 
+     * Permet de tester la méthode nombreCommun
      */
     public static void testNombreCommun() {
-        System.out.println("Test de la mÃ©thode nombreCommun  \n"
+        System.out.println("Test de la méthode nombreCommun  \n"
                            + "---------------------------------\n");
         int nbTestOk;      // nombre de tests corrects
-        Pays aTester;      // test effectuÃ© pour ce pays      
+        Pays aTester;      // test effectué pour ce pays
         ArrayList<String> listeATester = new ArrayList<>();
-        
+
         aTester = new Pays("France", VOISINS[0]);
-        System.out.println("Les tests se feront Ã  partir du pays " + aTester + "\n");
-        
-        // vÃ©rification quand le nombre de pays de la liste testÃ©e est infÃ©rieur au 
+        System.out.println("Les tests se feront à  partir du pays " + aTester + "\n");
+
+        // vérification quand le nombre de pays de la liste testée est inférieur au
         // nombre de voisins
-        System.out.println("======> VÃ©rification du nombre de voisins qui coincident (nombre infÃ©rieur) ....");
+        System.out.println("======> Vérification du nombre de voisins qui coincident (nombre inférieur) ....");
         nbTestOk = 0;
         for (int i = 0; i < VOISINS[0].length; i++) {
             if (aTester.nombreCommun(listeATester) == i) {
                 nbTestOk++;
             } else {
-                System.out.println("Echec du test avec les voisins " 
-                        + listeATester 
-                        + ". Le nombre de voisins communs trouvÃ© est " 
-                        + aTester.nombreCommun(listeATester) + " au lieu de " + i); 
+                System.out.println("Echec du test avec les voisins "
+                        + listeATester
+                        + ". Le nombre de voisins communs trouvé est "
+                        + aTester.nombreCommun(listeATester) + " au lieu de " + i);
             }
             listeATester.add(VOISINS[0][i]);
         }
-        
+
         // normalemnt : la liste coincide avec les voisins
-        System.out.println("======> VÃ©rification du nombre de voisins qui coincident (nombre Ã©gal) ....");
+        System.out.println("======> Vérification du nombre de voisins qui coincident (nombre égal) ....");
         if (aTester.nombreCommun(listeATester) == VOISINS[0].length) {
             nbTestOk++;
         } else {
-            System.out.println("Echec du test avec les voisins " 
-                    + listeATester 
-                    + ". Le nombre de voisins communs trouvÃ© est " 
-                    + aTester.nombreCommun(listeATester) + " au lieu de " + VOISINS[0].length); 
+            System.out.println("Echec du test avec les voisins "
+                    + listeATester
+                    + ". Le nombre de voisins communs trouvé est "
+                    + aTester.nombreCommun(listeATester) + " au lieu de " + VOISINS[0].length);
         }
-        
-        // vÃ©rification avec des pays en plus des voisins
-        System.out.println("======> VÃ©rification du nombre de voisins qui coincident "
-                           + "(nombre Ã©gal, et avec plus de pays dans la liste) ....");
+
+        // vérification avec des pays en plus des voisins
+        System.out.println("======> Vérification du nombre de voisins qui coincident "
+                           + "(nombre égal, et avec plus de pays dans la liste) ....");
         for (int i = 0; i < VOISINS[5].length; i++) {
             listeATester.add(VOISINS[5][i]);
             if (aTester.nombreCommun(listeATester) == VOISINS[0].length) {
                 nbTestOk++;
             } else {
-                System.out.println("Echec du test avec les voisins " 
-                        + listeATester 
-                        + ". Le nombre de voisins communs trouvÃ© est " 
-                        + aTester.nombreCommun(listeATester) + " au lieu de " + VOISINS[0].length); 
+                System.out.println("Echec du test avec les voisins "
+                        + listeATester
+                        + ". Le nombre de voisins communs trouvé est "
+                        + aTester.nombreCommun(listeATester) + " au lieu de " + VOISINS[0].length);
             }
-           
+
         }
-        
-        // vÃ©rification avec des pays en plus des voisins et des voisins manquant
-        System.out.println("======> VÃ©rification du nombre de voisins qui coincident "
-                           + "(nombre infÃ©rieur, et des pays non voisins dans la liste) ....");
+
+        // vérification avec des pays en plus des voisins et des voisins manquant
+        System.out.println("======> Vérification du nombre de voisins qui coincident "
+                           + "(nombre inférieur, et des pays non voisins dans la liste) ....");
         for (int i = 0; i < VOISINS[0].length; i++) {
             listeATester.remove(0);
             if (aTester.nombreCommun(listeATester) == VOISINS[0].length - i - 1) {
                 nbTestOk++;
             } else {
-                System.out.println("Echec du test avec les voisins " 
-                        + listeATester 
-                        + ". Le nombre de voisins communs trouvÃ© est " 
-                        + aTester.nombreCommun(listeATester) + " au lieu de " 
-                        + (VOISINS[0].length - i - 1)); 
+                System.out.println("Echec du test avec les voisins "
+                        + listeATester
+                        + ". Le nombre de voisins communs trouvé est "
+                        + aTester.nombreCommun(listeATester) + " au lieu de "
+                        + (VOISINS[0].length - i - 1));
             }
         }
-        
-        // rÃ©sultat du test
+
+        // résultat du test
         afficherResultatTest(VOISINS[0].length * 2 + VOISINS[5].length + 1, nbTestOk);
     }
-    
- 
-    
+
+    /**
+     * Test des accesseurs
+     * @author François de Saint Palais
+     */
+    public static void testAccesseur() {
+
+        int nbTestOk;
+        Pays paysTester;
+
+        System.out.println(  "Test des accesseur\n"
+                           + "---------------------------------\n");
+
+        System.out.println("======> Vérification de getNom()");
+        nbTestOk = 0;
+        for (String element : NOM_DES_PAYS) {
+            paysTester = new Pays(element);
+
+            if (paysTester.getNom().equals(element)) {
+                nbTestOk++;
+            } else {
+                System.out.println("Test échoué avec " + element);
+            }
+        }
+
+        afficherResultatTest(NOM_DES_PAYS.length, nbTestOk);
+
+        System.out.println("======> Vérification de getPaysLimitrophe()");
+        nbTestOk = 0;
+        boolean sontVoisins;
+        for (String[] element : VOISINS) {
+            paysTester = new Pays(NOM_DES_PAYS[0],element);
+
+            sontVoisins = paysTester.getPaysLimitrophe().size() <= element.length;
+            for (String possibleVoisin : element) {
+                sontVoisins &= paysTester.getPaysLimitrophe().contains(possibleVoisin);
+            }
+            if (sontVoisins) {
+                nbTestOk++;
+            } else {
+                System.out.println("Test échoué avec " + element);
+            }
+        }
+
+        afficherResultatTest(VOISINS.length, nbTestOk);
+
+    }
+
+
+
     /* ===================================================================== */
     /*                Programme principal pour lancer les tests              */
     /* ===================================================================== */
-    
+
     /**
-     * Programme principal : lancement des mÃ©thodes de tests unitaires
-     * @param args  argument non utlisÃ©
+     * Programme principal : lancement des méthodes de tests unitaires
+     * @param args  argument non utlisé
      */
     public static void main(String[] args) {
         System.out.println("TESTS DE LA  CLASSE PAYS\n------------------------------\n\n");
-        
-         testConstructeur1ArgumentException();
-         testConstructeur2ArgumentsException();
-         testConstructeur1ArgumentToString();
-         testConstructeur2ArgumentsToString();
-         testAjouterVoisin();
-         testAPourVoisin();
-         testNombreVoisin();
-         testAPourVoisinListePays();
-        // testNombreCommun();
+
+//         testConstructeur1ArgumentException();
+//         testConstructeur2ArgumentsException();
+//         testConstructeur1ArgumentToString();
+//         testConstructeur2ArgumentsToString();
+//         testAjouterVoisin();
+//         testAPourVoisin();
+//         testNombreVoisin();
+//         testAPourVoisinListePays();
+//         testNombreCommun();
+         testAccesseur();
     }
 
 }
