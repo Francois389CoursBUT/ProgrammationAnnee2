@@ -1,12 +1,12 @@
 /*
- * Représentation d'un coefficient d'une matrice                                    09/22 
+ * Représentation d'un coefficient d'une matrice                                    09/22
  * Coefficient.java
  */
 
 package structuredonnees.matrice;
 
 /**
- * Cette classe représente le coefficient d'une matrice. 
+ * Cette classe représente le coefficient d'une matrice.
  * Un coefficient regroupe : la ligne et la colonne du coefficient (2 entiers) et la valeur du
  * coefficient (de type double).
  * Aucune vérification n'est faite sur la validité des numéros de ligne et de colonne
@@ -24,7 +24,7 @@ public class Coefficient implements Comparable<Coefficient>{
     /** Attribut égal à la valeur du coefficient */
     private double valeur;
 
-    
+
     /**
      * Constructeur d'un coefficient
      * @param numLigne numéro de la ligne du coefficient (entier)
@@ -90,6 +90,7 @@ public class Coefficient implements Comparable<Coefficient>{
      * le coefficient
      * @return une chaîne avec les informations
      */
+    @Override
     public String toString() {
         return "(" + ligne + "," + colonne + ") => " + valeur;
     }
@@ -108,7 +109,7 @@ public class Coefficient implements Comparable<Coefficient>{
     /* non javadoc - @see java.lang.Comparable#compareTo(java.lang.Object) */
     @Override
     public int compareTo(Coefficient o) {
-        return ligne != o.ligne ? ligne - o.ligne 
+        return ligne != o.ligne ? ligne - o.ligne
                                 : colonne != o.colonne ? colonne - o.colonne
                                                        : 0;
     }

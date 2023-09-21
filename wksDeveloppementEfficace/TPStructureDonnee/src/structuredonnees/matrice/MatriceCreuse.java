@@ -7,31 +7,31 @@ package structuredonnees.matrice;
 
 import java.util.ArrayList;
 
-/** 
+/**
  * Repr�sente une matrice creuse.
- * 
+ *
  * @author Fran�ois de Saint Palais
  *
  */
 public class MatriceCreuse {
 
     private static final int HAUTEUR_DEFAUT = 5;
-    
+
     private static final int LARGEUR_DEFAUT = 5;
-        
-    /** 
+
+    /**
      * Contient les Coefficient non nul
      */
     private ArrayList<Coefficient> donnee;
-    
+
     /** Le nombre de ligne dans la matrice */
     private int hauteur;
-    
-    
+
+
     /** Le nombre de colonne dans la matrice */
     private int largeur;
 
-    /** 
+    /**
      * Cr�er une matrice carr� de taille 5, par d�faut
      * Tout les coefficient sont nul.
      */
@@ -42,7 +42,7 @@ public class MatriceCreuse {
         donnee = new ArrayList<>();
     }
 
-    /** 
+    /**
      * Cr�er une matrice nul de dimension hauteur, largeur
      * @param hauteur Le nombre de ligne de la matrice
      * @param largeur Le nombre de colonne de la matrice
@@ -58,7 +58,7 @@ public class MatriceCreuse {
         this.largeur = largeur;
         donnee = new ArrayList<>();
     }
-    
+
     /**
      * Retourne la valeur du coefficient � la position ligne, colonne
      * @param ligne
@@ -66,13 +66,13 @@ public class MatriceCreuse {
      * @return La valeur du coefficient au coordonn�e donn�e
      */
     public double getValeur(int ligne, int colonne) {
-        if (   ligne   < 1 || hauteur < ligne 
+        if (   ligne   < 1 || hauteur < ligne
             || colonne < 1 || largeur < colonne) {
             throw new IllegalArgumentException("Erreur : les coordonn�es "
                     + "selectionner sont hors des dimmensions de la matrice");
         }
         for (Coefficient coefficient : donnee) {
-            if (   coefficient.getColonne() == colonne 
+            if (   coefficient.getColonne() == colonne
                 && coefficient.getLigne() == ligne) {
                 return coefficient.getValeur();
             }
@@ -87,22 +87,22 @@ public class MatriceCreuse {
      * @param valeur
      */
     public void setValeur(int ligne, int colonne, double valeur) {
-        if (   ligne   < 1 || hauteur < ligne 
+        if (   ligne   < 1 || hauteur < ligne
                 || colonne < 1 || largeur < colonne) {
             throw new IllegalArgumentException("Erreur : les coordonn�es "
                     + "selectionner sont hors des dimmensions de la matrice");
         }
-        
+
         boolean coefficientEstSet = false;
         int cpt = 0;
-        
+
         for (Coefficient coefficient : donnee) {
-            if (   coefficient.getColonne() == colonne 
+            if (   coefficient.getColonne() == colonne
                     && coefficient.getLigne() == ligne) {
                 if (valeur == 0) {
                     donnee.remove(cpt);
                 } else {
-                    coefficient.setValeur(valeur);                    
+                    coefficient.setValeur(valeur);
                 }
                 coefficientEstSet = true;
             }
@@ -112,33 +112,33 @@ public class MatriceCreuse {
             donnee.add(new Coefficient(ligne, colonne, valeur));
         }
     }
-    
+
     /** Affiche les coefficients non nul */
     public void afficher() {
         String template = "Ligne : %d | Colonne : %d | Valeur : %f%n";
         for (Coefficient coefficient : donnee) {
-            System.out.printf(template,coefficient.getLigne(), 
+            System.out.printf(template,coefficient.getLigne(),
                     coefficient.getColonne(), coefficient.getValeur());
         }
     }
-    
+
     /**
      * @param facteur
      * @return la matrice resultant du produit scalaire
      */
     public MatriceCreuse multiplier(double facteur) {
-        
+
        MatriceCreuse resultat = new MatriceCreuse(hauteur, largeur);
-       
+
        for (int i = 1; i < resultat.hauteur; i++) {
            for (int j = 1; j < resultat.largeur; j++) {
                resultat.setValeur(i, j, getValeur(i, j) * facteur);
            }
        }
-        
+
        return resultat;
     }
-    
+
     /**
      * @param mat1
      * @param mat2
@@ -149,16 +149,16 @@ public class MatriceCreuse {
             throw new IllegalArgumentException("Erreur : Les deux matrice ne "
                     + "sont pas de la m�me dimensions");
         }
-        
+
         MatriceCreuse resultat = new MatriceCreuse(mat1.hauteur,mat1.largeur);
-        
+
         for (int i = 1; i < resultat.hauteur; i++) {
             for (int j = 1; j < resultat.largeur; j++) {
-                resultat.setValeur(i, j, 
+                resultat.setValeur(i, j,
                         mat1.getValeur(i, j) + mat2.getValeur(i, j));
             }
         }
-        
+
         return resultat;
     }
 
@@ -183,15 +183,15 @@ public class MatriceCreuse {
         }
         return resultat;
     }
-    
+
     /**
-     * Calcule le produit scalaire de deux vecteur. 
+     * Calcule le produit scalaire de deux vecteur.
      * C'est une m�thode extraite du calcul du produit matricielle
      * @param m1 La matrice o� ce trouve le vecteur horizontale
      * @param m2 La matrice o� ce trouve le vecteur vertical
      * @param ligne L'indice du vecteur horizontale
      * @param colonne L'indice du vecteur vertical
-     * @return 
+     * @return
      */
     private static double produitScalaire (MatriceCreuse m1, MatriceCreuse m2, int ligne, int colonne) {
         double resultat = 0;

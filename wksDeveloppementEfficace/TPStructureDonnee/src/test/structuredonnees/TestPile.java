@@ -5,7 +5,9 @@
 
 package test.structuredonnees;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,40 +22,40 @@ class TestPile {
     @Test
     void testManuel() {
         Pile cinq = new Pile(5);
-        
+
         assertTrue(cinq.estVide());
-        
+
         cinq.empiler(1);
         cinq.empiler(22);
         cinq.empiler(333);
-        
+
         assertFalse(cinq.estVide());
-        
+
         System.out.println(cinq.sommet());
-        
+
         System.out.println(cinq);
-        
+
         cinq.depiler();
-        
+
         System.out.println(cinq);
-        
+
         cinq.empiler(4444);
         cinq.empiler(55555);
         cinq.empiler(666666);
-        
+
         assertTrue(cinq.estPleine());
-        
+
         assertThrows(IllegalStateException.class, () -> cinq.empiler(123));
-        
+
         assertThrows(IllegalArgumentException.class, () -> new Pile(-1));
-        
+
         Pile vide = new Pile();
         assertThrows(IllegalStateException.class, () -> vide.depiler());
-        
+
         assertThrows(IllegalStateException.class, () -> vide.sommet());
-        
+
     }
 
-    
+
 
 }
