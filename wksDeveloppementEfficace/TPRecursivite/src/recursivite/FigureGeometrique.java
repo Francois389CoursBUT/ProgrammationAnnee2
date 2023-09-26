@@ -13,9 +13,10 @@ package recursivite;
 public class FigureGeometrique {
     
     public static void main(String[] args) {
-        etoileBasMillieu(8);
-//        etoileHautGauche(8);
-//        etoileBasGauche(8);
+        etoileHautGauche(8);
+        etoileBasGauche(8);
+        triangleIsocele(8,8);
+        losange(8, 8);
     }
 
     /**
@@ -55,14 +56,27 @@ public class FigureGeometrique {
         }
     }
     
-    public static void etoileBasMillieu(int n) {
+    public static void triangleIsocele(int total,int n) {
         if (0 < n) {
-            blanc(n-1);
-            etoile(n+n-1);
-            blanc(n-1);
-            etoileBasMillieu(n-1);
+            triangleIsocele(total,n-1);
+            blanc(total-n);
+            etoile(2*n-1);
             System.out.println();
         }
+    }
+
+    public static void triangleIsoceleInverser(int total,int n) {
+        if (0 < n) {
+            blanc(total-n);
+            etoile(2*n-1);
+            System.out.println();
+            triangleIsoceleInverser(total, n-1);
+        }
+    }
+    
+    public static void losange(int total, int n) {
+        triangleIsocele(total, n);
+        triangleIsoceleInverser(total, n);
     }
     
 }
