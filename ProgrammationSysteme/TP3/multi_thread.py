@@ -24,9 +24,8 @@ while entier != 0:
         t.start()
     
     # Attendre que les thread ont finis leur travaille
-    # Vu que l'on n'est pas patient on attend 0.1s avant de les tuer
     for t in t1:
-        t.join(timeout=0.1)
+        t.join()
     
     # Affiche les information créée
     for thread in t1:
