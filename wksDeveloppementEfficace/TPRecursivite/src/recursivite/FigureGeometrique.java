@@ -75,7 +75,7 @@ public class FigureGeometrique {
     }
     
     public static void losange(int total, int n) {
-        triangleIsocele(total, n);
+        triangleIsocele(total, n-1);
         triangleIsoceleInverser(total, n);
     }
     
