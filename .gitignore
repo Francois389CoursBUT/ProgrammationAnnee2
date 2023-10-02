@@ -27,5 +27,6 @@ replay_pid*
 .settings
 .project
 .metadata
+.classpath
 
 Document
