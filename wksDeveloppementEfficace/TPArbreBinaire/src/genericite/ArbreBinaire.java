@@ -31,11 +31,10 @@ public class ArbreBinaire<E extends Comparable<E>> {
     }
 
     /** 
-     * TODO comment method role
      * @param i
      * @return
      */
-    public boolean estPresente(int i) {
+    public boolean estPresente(E i) {
         // TODO Auto-generated method stub
         return false;
     }
@@ -45,7 +44,7 @@ public class ArbreBinaire<E extends Comparable<E>> {
      * @param valeur
      * @return
      */
-    public boolean estSurUneFeuille(int valeur) {
+    public boolean estSurUneFeuille(E valeur) {
         // TODO Auto-generated method stub
         return false;
     }
@@ -55,7 +54,7 @@ public class ArbreBinaire<E extends Comparable<E>> {
      * @return
      */
     public String hauteur() {
-        // TODO Auto-generated method stub
+        
         return null;
     }
     
