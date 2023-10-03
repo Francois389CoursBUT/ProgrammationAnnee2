@@ -152,6 +152,7 @@ public class TestArbre {
         // création d'une hiérarchie conforme Ã  l'exemple du TP
         ArbreBinaire<Integer> arbre = creerArbre(ARBRE_ENONCE);        
         nbTestOk = 0;
+        arbre.afficheAbreNiveau();
         
         // on vérifie que toutes les valeurs de ARBRE_ENONCE sont présentes
         for (int valeur : ARBRE_ENONCE) {
@@ -184,11 +185,11 @@ public class TestArbre {
      * @param args argument non utilisé
      */
     public static void main(String[] args) {
-       testConstructeurSeul();
-       testEstPresenteDansArbreVide();
-       testInserer();
+//       testConstructeurSeul();
+//       testEstPresenteDansArbreVide();
+//       testInserer();
        testInsererEstPresente();
-       testArbreChaine();
+//       testArbreChaine();
     }
     
 
