@@ -1,5 +1,5 @@
 /*
- * Test des mÃ©thodes de la  classe arbre binaire
+ * Test des méthodes de la  classe arbre binaire
  * TestArbre.java
  */
 package test.genericite;
@@ -7,31 +7,31 @@ package test.genericite;
 import genericite.ArbreBinaire;
 
 /**
- * Test des mÃ©thodes des classes gÃ©rant les arbres binaires
+ * Test des méthodes des classes gérant les arbres binaires
  * @author INFO2
  */
 public class TestArbre {    
     
     /**
-     * Valeurs Ã  insÃ©ser pour les tests
+     * Valeurs Ã  inséser pour les tests
      */
     private static final int[] A_INSERER = {25, 77, 11, 5, 20};
 
     /**
-     * Valeurs prÃ©sentes dans l'arbre de l'Ã©noncÃ©
+     * Valeurs présentes dans l'arbre de l'énoncé
      */
     private static final int[] ARBRE_ENONCE = {47, 25, 77, 65, 93, 68, 
                                                25, 11, 43, 7, 17, 31, 44};
     
  
     /**
-     * Test d'un arbre contenant des chaÃ®nes de caractÃ¨res
-     * Des chaÃ®nes sont ajoutÃ©es et on vÃ©rifie ensuite si certaines d'entre elles
-     * sont bien prÃ©sentes, et si d'autres absentes sont bien dÃ©tectÃ©es comme Ã©tant
+     * Test d'un arbre contenant des chaânes de caractères
+     * Des chaânes sont ajoutées et on vérifie ensuite si certaines d'entre elles
+     * sont bien présentes, et si d'autres absentes sont bien détectées comme étant
      * absentes
      */
     public static void testArbreChaine() {
-        System.out.println("\nTest de la gestion d'un arbre de chaÃ®nes de caractÃ¨res :\n"
+        System.out.println("\nTest de la gestion d'un arbre de chaânes de caractères :\n"
                            + "-----------------------------------------------------------\n");
         ArbreBinaire<String> arbre = new ArbreBinaire<>();
         
@@ -44,28 +44,28 @@ public class TestArbre {
         arbre.inserer("juin");
         arbre.inserer("juillet");
         arbre.inserer("aout");
-        System.out.println("Les valeurs suivantes sont insÃ©rÃ©es :"
+        System.out.println("Les valeurs suivantes sont insérées :"
                 + " janvier -> aout ");
         //arbre.afficheArbre();
 
         if (arbre.inserer("mars")) {
-            System.out.println("Echec => insertion de mars alors que dÃ©jÃ  prÃ©sent ! ");
+            System.out.println("Echec => insertion de mars alors que déjà  présent ! ");
         }
 
         if (arbre.estPresente("mars")) {
-            System.out.println("Test ok => La valeur mars est prÃ©sente.");
+            System.out.println("Test ok => La valeur mars est présente.");
         }
 
         if (!arbre.estPresente("decembre")) {
-            System.out.println("Test ok => La valeur decembre n'est pas prÃ©sente.");
+            System.out.println("Test ok => La valeur decembre n'est pas présente.");
         }        
     }
     
     
     /**
-     * MÃ©thode qui crÃ©e un arbre et insÃ¨re toutes les valeus du
-     * tableau argument. La premiÃ¨re valeur sera celle du noeud racine
-     * @param valeursAInserer  entiers Ã  insÃ©rer dans l'arbre
+     * Méthode qui crée un arbre et insère toutes les valeus du
+     * tableau argument. La première valeur sera celle du noeud racine
+     * @param valeursAInserer  entiers Ã  insérer dans l'arbre
      * @return un arbre contenant les valeurs du tableau argument
      */
     public static ArbreBinaire<Integer>  creerArbre(int[] valeursAInserer) {
@@ -81,11 +81,11 @@ public class TestArbre {
     
     
     /**
-     * Cette mÃ©thode teste la crÃ©ation d'un arbre vide
-     * Elle ne teste pas toutes les opÃ©rations Ã  effectuer lors de la crÃ©ation
+     * Cette méthode teste la création d'un arbre vide
+     * Elle ne teste pas toutes les opérations Ã  effectuer lors de la création
      */
     public static void testConstructeurSeul() {
-        System.out.println("\nTest de la crÃ©ation d'un arbre vide (test partiel):\n"
+        System.out.println("\nTest de la création d'un arbre vide (test partiel):\n"
                            + "-------------------------------------------\n");
         ArbreBinaire<Integer> arbre = new ArbreBinaire<>();
         System.out.println("Test OK");
@@ -93,22 +93,22 @@ public class TestArbre {
     
     
     /**
-     * Cette mÃ©thode teste la mÃ©thode estPresente dans le cas oÃ¹ l'arbre est vide
+     * Cette méthode teste la méthode estPresente dans le cas oÃ¹ l'arbre est vide
      * 
      */
     public static void testEstPresenteDansArbreVide() {
-        System.out.println("\nTest de la mÃ©thode estPresente (test partiel, arbre vide):\n"
+        System.out.println("\nTest de la méthode estPresente (test partiel, arbre vide):\n"
                            + "------------------------------------------------------------\n");
         ArbreBinaire<Integer> arbre = new ArbreBinaire<>();
         if (! arbre.estPresente(47)) {
             System.out.println("Test OK = > la valeur 47 est absente");
         } else {
-            System.out.println("Test NOK => la valeur 47 n'a pas Ã©tÃ© trouvÃ©e, alors qu'elle est prÃ©sente.");
+            System.out.println("Test NOK => la valeur 47 n'a pas été trouvée, alors qu'elle est présente.");
         }       
     }
     
     /**
-     * Cette mÃ©thode teste l'insertion de valeurs
+     * Cette méthode teste l'insertion de valeurs
      * Elle ne teste pas toutes les actions a effectuer lors de l'insertion
      */
     public static void testInserer() {
@@ -121,16 +121,16 @@ public class TestArbre {
         // insertions de valeurs absentes
         for (int valeur : A_INSERER) {
             if (! arbre.inserer(valeur)) {
-                System.out.println("Test NOK : Ã©chec de l'insertion de " + valeur);
+                System.out.println("Test NOK : échec de l'insertion de " + valeur);
             } else {
                 nbTestOk++;
             }
         }
         
-        // insertion de valeurs prÃ©sentes : l'ajout ne doit pas se faire
+        // insertion de valeurs présentes : l'ajout ne doit pas se faire
         for (int valeur : A_INSERER) {
             if (arbre.inserer(valeur)) {
-                System.out.println("Test NOK : insertion de " + valeur + " alors que dÃ©jÃ  prÃ©sente");
+                System.out.println("Test NOK : insertion de " + valeur + " alors que déjà  présente");
             } else {
                 nbTestOk++;
             }
@@ -142,31 +142,31 @@ public class TestArbre {
     
     
     /**
-     * Cette mÃ©thode teste l'insertion de valeurs et la mÃ©thode estPresente
+     * Cette méthode teste l'insertion de valeurs et la méthode estPresente
      */
     public static void testInsererEstPresente() {
         System.out.println("\nTest methode estPresente :\n"
                            + "------------------------------\n");
         int nbTestOk;
         
-        // crÃ©ation d'une hiÃ©rarchie conforme Ã  l'exemple du TP
+        // création d'une hiérarchie conforme Ã  l'exemple du TP
         ArbreBinaire<Integer> arbre = creerArbre(ARBRE_ENONCE);        
         nbTestOk = 0;
         
-        // on vÃ©rifie que toutes les valeurs de ARBRE_ENONCE sont prÃ©sentes
+        // on vérifie que toutes les valeurs de ARBRE_ENONCE sont présentes
         for (int valeur : ARBRE_ENONCE) {
             if (! arbre.estPresente(valeur)) {
-                System.out.println("Test NOK : " +  valeur + "n'a pas Ã©tÃ© trouvÃ©e.");
+                System.out.println("Test NOK : " +  valeur + "n'a pas été trouvée.");
             } else {
                 nbTestOk++;
             }
         }
         
-        // on vÃ©rifie que toutes les valeurs de ARBRE_ENONCE + 1 sont absentes
+        // on vérifie que toutes les valeurs de ARBRE_ENONCE + 1 sont absentes
         for (int valeur : ARBRE_ENONCE) {
-            // TODO : amÃ©liorer 43 Ã©crit en dur
+            // TODO : améliorer 43 écrit en dur
             if (valeur != 43 && arbre.estPresente(valeur + 1)) {
-                System.out.println("Test NOK : " +  valeur + "a Ã©tÃ© trouvÃ©e.");
+                System.out.println("Test NOK : " +  valeur + "a été trouvée.");
             } else {
                 nbTestOk++;
             }
@@ -181,7 +181,7 @@ public class TestArbre {
     
     /**
      * Programme principal : lance les tests
-     * @param args argument non utilisÃ©
+     * @param args argument non utilisé
      */
     public static void main(String[] args) {
        testConstructeurSeul();
