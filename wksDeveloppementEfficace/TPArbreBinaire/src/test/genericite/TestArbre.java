@@ -178,6 +178,163 @@ public class TestArbre {
                 + ARBRE_ENONCE.length * 2 +  " tests.\n");     
     }
     
+    /**
+     * Test des 3 méthodes de parcours
+     */
+    public static void test3Parcours() {
+        System.out.println("\nTest des 3 méthodes de parcours :\n"
+                           + "-------------------------------------\n");
+        ArbreBinaire<Integer> arbre = creerArbre(ARBRE_ENONCE);
+        
+        System.out.println("Avec l'arbre de l'énoncé :");
+        System.out.println("  Resultat du parcours prefixe :  " + arbre.parcoursPrefixe());
+        System.out.println("  Resultat du parcours infixe :   " + arbre.parcoursInfixe());
+        System.out.println("  Resultat du parcours postfixe : " + arbre.parcoursPostfixe());
+        
+        ArbreBinaire<Integer> arbreVide = new ArbreBinaire<>();
+        System.out.println("\nAvec l'arbre vide :");
+        System.out.println("  Resultat du parcours prefixe :  " + arbreVide.parcoursPrefixe());
+        System.out.println("  Resultat du parcours infixe :   " + arbreVide.parcoursInfixe());
+        System.out.println("  Resultat du parcours postfixe : " + arbreVide.parcoursPostfixe());
+        
+    }
+    
+    /**
+     * Test de la méthode hauteur : sur un arbre vide et sur l'arbre de l'énoncé
+     */
+    public static void testHauteur() {
+        System.out.println("\nTest de la hauteur de l'arbre :\n"
+                + "-------------------------------------------\n");
+        ArbreBinaire<Integer> arbre = creerArbre(ARBRE_ENONCE);
+        
+        System.out.println("Hauteur de l'arbre de l'énoncé = " + arbre.hauteur());
+       
+        ArbreBinaire<Integer> arbreVide = new ArbreBinaire<>();
+        System.out.println("Hauteur d'un arbre vide = " + arbreVide.hauteur());
+    }
+    
+    /**
+     * Test de la méthode qui détermine si une valeur est présente et placée sur
+     * une feuille
+     */
+    public static void testEstSurUneFeuille() {
+        System.out.println("\nTest estSurUneFeuille :\n"
+                           + "------------------------\n");
+        
+        // valeurs qui ne sont pas sur une feuille 
+        final int[] PAS_SUR_FEUILLE = {47, 25, 77, 65, 11, 3, 13, 26, 70, 79,
+                43, 9, 22, 62, 66};
+        
+        // valeurs qui sont sur une feuille 
+        final int[] SUR_FEUILLE = { 7, 17, 31, 44, 68, 93 };
+        
+        int nbTestOk;
+        
+        // création arbre de l'énoncé
+        ArbreBinaire<Integer> arbre = creerArbre(ARBRE_ENONCE);
+        
+        // tests de valeurs non présentes sur une feuille
+        nbTestOk = 0;
+        for (int valeur : PAS_SUR_FEUILLE) {
+            if (arbre.estSurUneFeuille(valeur)) {
+                System.out.println("Echec => " + valeur
+                                   + " a été trouvée sur une feuille"); 
+            } else {
+                nbTestOk++;
+            }
+        }
+        System.out.println("\n   *****  RESULTAT pour valeurs pas sur une feuille = " + nbTestOk 
+                + " tests ok sur un total de "
+                + PAS_SUR_FEUILLE.length +  " tests.");    
+        
+        // tests de valeurs présentes sur une feuille
+        nbTestOk = 0;
+        for (int valeur : SUR_FEUILLE) {
+            if (! arbre.estSurUneFeuille(valeur)) {
+                System.out.println("Echec =>  " + valeur
+                                   + " n'a pas été trouvée sur une feuille"); 
+            } else {
+                nbTestOk++;
+            }
+        }
+        System.out.println("\n   *****  RESULTAT pour valeurs sur une feuille = " + nbTestOk 
+                + " tests ok sur un total de "
+                + SUR_FEUILLE.length +  " tests.");   
+        
+        // TODO : compléter avec test sur un arbre vide
+    }
+    
+    
+    
+    /**
+     * Test de la méthode plusGrandElement : sur un arbre vide 
+     * et sur l'arbre de l'énoncé
+     */
+    public static void testPlusGrandElement() {
+        System.out.println("\nTest recherche plus grand élément :\n"
+                      + "-------------------------------------------\n");
+        ArbreBinaire<Integer> arbre = creerArbre(ARBRE_ENONCE);
+        
+        System.out.println("Plus grand élément de l'arbre de l'énoncé = " 
+                           + arbre.plusGrandElement());
+       
+        ArbreBinaire<Integer> arbreVide = new ArbreBinaire<>();
+        System.out.println("Plus grand élément  d'un arbre vide = " 
+                            + arbreVide.plusGrandElement());
+    }
+    
+    
+    /**
+     * Test de la méthode qui supprime une valeur si elle est sur une feuille
+     */
+    public static void testSupprimerSiFeuille() {
+        System.out.println("\nTest supprimerSiFeuille :\n"
+                           + "-----------------------------\n");
+        
+        // valeurs qui ne sont pas sur une feuille (ne peuvent être supprimées)
+        final int[] PAS_SUR_FEUILLE = {47, 25, 77, 65, 11, 3, 13, 26, 70, 79,
+                43, 9, 22, 62, 66};
+        
+        // valeurs qui sont sur une feuille (peuvent être supprimées)
+        final int[] SUR_FEUILLE = { 7, 17, 31, 44, 68, 93 };
+        
+        int nbTestOk;
+        
+        // création arbre de l'énoncé
+        ArbreBinaire<Integer> arbre = creerArbre(ARBRE_ENONCE);
+        
+        // tests de suppressions impossibles
+        nbTestOk = 0;
+        for (int valeur : PAS_SUR_FEUILLE) {
+            if (arbre.supprimeSiFeuille(valeur)) {
+                System.out.println("Echec => suppression de " + valeur
+                                   + " alors que pas situé sur une feuille"); 
+            } else {
+                nbTestOk++;
+            }
+        }
+        System.out.println("\n   *****  RESULTAT pour suppressions impossibles = " + nbTestOk 
+                + " tests ok sur un total de "
+                + PAS_SUR_FEUILLE.length +  " tests.");    
+        
+        // tests de suppressions possibles
+        nbTestOk = 0;
+        for (int valeur : SUR_FEUILLE) {
+            if (! arbre.supprimeSiFeuille(valeur)) {
+                System.out.println("Echec => suppression impossible de " + valeur
+                                   + " alors que situé sur une feuille"); 
+            } else {
+                // arbre.afficherArbre();
+                nbTestOk++;
+            }
+        }
+        System.out.println("\n   *****  RESULTAT pour suppressions possibles = " + nbTestOk 
+                + " tests ok sur un total de "
+                + SUR_FEUILLE.length +  " tests.");   
+        
+        // TODO : compléter avec test sur un arbre vide
+    }
+    
    
     
     /**
@@ -185,11 +342,21 @@ public class TestArbre {
      * @param args argument non utilisé
      */
     public static void main(String[] args) {
-//       testConstructeurSeul();
-//       testEstPresenteDansArbreVide();
-//       testInserer();
+       testConstructeurSeul();
+       testEstPresenteDansArbreVide();
+       testInserer();
        testInsererEstPresente();
-//       testArbreChaine();
+       testArbreChaine();
+       
+       test3Parcours();
+       testHauteur();
+       // testEstSurUneFeuille();
+       // testPlusGrandElement();
+       // testSupprimerSiFeuille();
+       
+       ArbreBinaire<Integer> arbre = creerArbre(ARBRE_ENONCE);
+//       arbre.afficheAbreNiveau();
+
     }
     
 

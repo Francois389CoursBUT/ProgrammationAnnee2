@@ -5,10 +5,9 @@
 
 package recursivite;
 
-import java.util.Arrays;
 
 /** TODO comment class responsibility (SRP)
- * @author "FranÃ§ois de Saint Palais"
+ * @author François de Saint Palais
  */
 public class TraitementTableau {
 

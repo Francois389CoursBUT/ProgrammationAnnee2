@@ -118,8 +118,57 @@ public class Noeud<E extends Comparable<E>> {
         }
         return voisinDroite.inserer(valeurAInserer);
     }
+    
+    public String parcoursPrefixe() {
+        StringBuilder resultat = new StringBuilder();
+        resultat.append(valeur).append("  ")
+                .append(voisinGauche == null ? "" : voisinGauche.parcoursPrefixe())
+                .append(voisinDroite == null ? "" : voisinDroite.parcoursPrefixe());
+        return resultat.toString();
+    }
+    
+    public String parcoursInfixe() {
+        StringBuilder resultat = new StringBuilder();
+        if (voisinGauche != null) resultat.append(voisinGauche.parcoursInfixe());
+        resultat.append(valeur).append("  ");
+        if (voisinDroite != null) resultat.append(voisinDroite.parcoursInfixe());
+        return resultat.toString();
+    }
+    
+    public String parcoursPostfixe() {
+        StringBuilder resultat = new StringBuilder();
+        if (voisinGauche != null) resultat.append(voisinGauche.parcoursInfixe());
+        if (voisinDroite != null) resultat.append(voisinDroite.parcoursInfixe());
+        resultat.append(valeur).append("  ");
+        return resultat.toString();
+    }
 
-
+    
+    public int hauteur() {
+        if (voisinGauche == null && voisinDroite == null) {
+            return 1;
+        }
+        if (voisinGauche == null) {
+            return voisinDroite.hauteur() + 1;
+        }
+        if (voisinDroite == null) {
+            return voisinGauche.hauteur();
+        }
+        return Math.max(voisinGauche.hauteur(), voisinDroite.hauteur()) + 1;
+    }
+    
+    
+    public boolean estSurUneFeuille(E valeurCherche) {
+        if (voisinGauche == null && voisinDroite == null ) {
+            return valeurCherche.equals(valeur);
+        }
+        if (voisinGauche != null && voisinDroite != null) {
+            return    voisinGauche.estSurUneFeuille(valeurCherche)
+                   || voisinDroite.estSurUneFeuille(valeurCherche);
+        }
+        
+        return false;
+    }
 
 
 

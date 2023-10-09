@@ -47,4 +47,51 @@ public class ArbreBinaire<E extends Comparable<E>> {
         }
         return racine.inserer(valeur);
     }
+    
+    public String parcoursPrefixe() {
+        return racine == null ? "Arbre vide" : racine.parcoursPrefixe();
+    }
+    
+    public String parcoursInfixe() {
+        return racine == null ? "Arbre vide" : racine.parcoursInfixe();
+    }
+    
+    public String parcoursPostfixe() {
+        return racine == null ? "Arbre vide" : racine.parcoursPostfixe();
+    }
+
+    /** 
+     * @return la hauteur de l'arbre
+     */
+    public int hauteur() {
+        return racine == null ? 0 :racine.hauteur();
+    }
+
+    /** 
+     * TODO comment method role
+     * @param valeur
+     * @return
+     */
+    public boolean estSurUneFeuille(E valeur) {
+        return racine == null ? false : racine.estSurUneFeuille(valeur);
+    }
+
+    /** 
+     * TODO comment method role
+     * @return
+     */
+    public boolean plusGrandElement() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    /** 
+     * TODO comment method role
+     * @param valeur
+     * @return
+     */
+    public boolean supprimeSiFeuille(int valeur) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }
