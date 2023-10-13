@@ -39,19 +39,14 @@ public class Noeud<E extends Comparable<E>> {
     * sur quelle colonne il faut effectuer l'affichage
     */
     public void afficheArbreNiveau(int niveau) {
-        //TODO ça marche pas
-        if (voisinGauche == null && voisinDroite == null) {
-            blanc(niveau);
-            System.out.println(valeur);
-        }
-        if (voisinGauche != null) {
-            voisinGauche.afficheArbreNiveau(niveau + 1);
-        }
         if (voisinDroite != null) {
             voisinDroite.afficheArbreNiveau(niveau + 1);
         }
         blanc(niveau);
-        System.out.print(valeur);
+        System.out.println(valeur);
+        if (voisinGauche != null) {
+            voisinGauche.afficheArbreNiveau(niveau + 1);
+        }
     }
 
     /**
@@ -60,7 +55,7 @@ public class Noeud<E extends Comparable<E>> {
      * @param nbBlanc
      */
     private void blanc(int nbBlanc) {
-        for (int i = 0; i < nbBlanc; i++) {
+        for (int i = 0; i < nbBlanc * DECALAGE; i++) {
             System.out.print(' ');
         }
     }
@@ -162,12 +157,28 @@ public class Noeud<E extends Comparable<E>> {
         if (voisinGauche == null && voisinDroite == null ) {
             return valeurCherche.equals(valeur);
         }
+        
         if (voisinGauche != null && voisinDroite != null) {
-            return    voisinGauche.estSurUneFeuille(valeurCherche)
-                   || voisinDroite.estSurUneFeuille(valeurCherche);
+            return valeurCherche.compareTo(valeur) < 0 ?
+                   voisinGauche.estSurUneFeuille(valeurCherche):
+                   voisinDroite.estSurUneFeuille(valeurCherche);     
+        }
+        
+        if (voisinGauche != null && valeurCherche.compareTo(valeur) < 0) {
+            return voisinGauche.estSurUneFeuille(valeurCherche);
+        }
+        if (voisinDroite != null && valeur.compareTo(valeurCherche) < 0) {
+            return voisinDroite.estSurUneFeuille(valeurCherche);
         }
         
         return false;
+    }
+    
+    public E plusGrandElement() {
+        if (voisinDroite != null) {
+            return voisinDroite.plusGrandElement();
+        }
+        return valeur;
     }
 
 

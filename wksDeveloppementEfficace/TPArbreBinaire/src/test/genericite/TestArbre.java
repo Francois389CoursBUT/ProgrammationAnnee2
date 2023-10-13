@@ -334,6 +334,7 @@ public class TestArbre {
         
         // TODO : compléter avec test sur un arbre vide
     }
+  
     
    
     
@@ -342,17 +343,17 @@ public class TestArbre {
      * @param args argument non utilisé
      */
     public static void main(String[] args) {
-       testConstructeurSeul();
-       testEstPresenteDansArbreVide();
-       testInserer();
-       testInsererEstPresente();
-       testArbreChaine();
-       
-       test3Parcours();
-       testHauteur();
-       // testEstSurUneFeuille();
-       // testPlusGrandElement();
-       // testSupprimerSiFeuille();
+//       testConstructeurSeul();
+//       testEstPresenteDansArbreVide();
+//       testInserer();
+//       testInsererEstPresente();
+//       testArbreChaine();
+//       
+//       test3Parcours();
+//       testHauteur();
+//       testEstSurUneFeuille();
+       testPlusGrandElement();
+//       testSupprimerSiFeuille();
        
        ArbreBinaire<Integer> arbre = creerArbre(ARBRE_ENONCE);
 //       arbre.afficheAbreNiveau();

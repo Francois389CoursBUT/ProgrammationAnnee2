@@ -25,6 +25,8 @@ public class ArbreBinaire<E extends Comparable<E>> {
     public void afficheAbreNiveau() {
         if (racine != null) {
             racine.afficheArbreNiveau(0);
+        } else {
+            System.out.println();
         }
     }
 
@@ -80,9 +82,11 @@ public class ArbreBinaire<E extends Comparable<E>> {
      * TODO comment method role
      * @return
      */
-    public boolean plusGrandElement() {
-        // TODO Auto-generated method stub
-        return false;
+    public E plusGrandElement() {
+        if (racine != null) {
+            return racine.plusGrandElement();            
+        }
+        return null;
     }
 
     /** 
