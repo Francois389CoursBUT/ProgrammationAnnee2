@@ -181,6 +181,41 @@ public class Noeud<E extends Comparable<E>> {
         return valeur;
     }
 
+    /** 
+     * Supprime un element si il est sur une feuille
+     * @param valeurASupprimer La valeur de la feuille à supprimer
+     * @return true si l'élement à pu êter supprimer 
+     * false sinon 
+     */
+    public boolean supprimeSiFeuille(E valeurASupprimer) {
+        //TODO Fix 
+        if (valeurASupprimer.compareTo(valeur) < 0) {
+            if (voisinGauche.voisinGauche == null && voisinGauche.voisinDroite == null) {
+                if (voisinGauche.valeur.equals(valeurASupprimer)) {
+                    voisinGauche = null; //Suppression de l'élement
+                    return true;                    
+                } else {
+                    return false;
+                }
+            }
+            return voisinGauche.supprimeSiFeuille(valeurASupprimer);
+        }
+        
+        if (valeurASupprimer.compareTo(valeur) > 0) {
+            if (voisinDroite.voisinGauche == null && voisinDroite.voisinDroite == null) {
+                if (voisinDroite.valeur.equals(valeurASupprimer)) {
+                    voisinDroite = null; //Suppression de l'élement
+                    return true;                    
+                } else {
+                    return false;
+                }
+            }
+            return voisinDroite.supprimeSiFeuille(valeurASupprimer);
+        }
+        return false;
+        
+    }
+
 
 
 

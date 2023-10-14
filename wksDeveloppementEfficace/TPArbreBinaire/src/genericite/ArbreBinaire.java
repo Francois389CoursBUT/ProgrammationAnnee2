@@ -69,18 +69,17 @@ public class ArbreBinaire<E extends Comparable<E>> {
         return racine == null ? 0 :racine.hauteur();
     }
 
-    /** 
-     * TODO comment method role
-     * @param valeur
-     * @return
+    /**
+     * @param valeur La valeur de l'élément recherche
+     * @return true si l'élément est sur une feuille false sinon
      */
     public boolean estSurUneFeuille(E valeur) {
         return racine == null ? false : racine.estSurUneFeuille(valeur);
     }
 
     /** 
-     * TODO comment method role
-     * @return
+     * @return Le plus grand élement de l'arbre, basé sur la relation d'ordre de
+     * comparTo()
      */
     public E plusGrandElement() {
         if (racine != null) {
@@ -90,12 +89,20 @@ public class ArbreBinaire<E extends Comparable<E>> {
     }
 
     /** 
-     * TODO comment method role
-     * @param valeur
-     * @return
+     * Supprime un element si il est sur une feuille
+     * @param valeur La valeur de la feuille à supprimer
+     * @return true si l'élement à pu êter supprimer 
+     * false sinon 
      */
-    public boolean supprimeSiFeuille(int valeur) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean supprimeSiFeuille(E valeur) {
+        if (   racine.getVoisinGauche() == null
+            && racine.getVoisinDroite() == null) {
+            racine = null;
+            return true;
+        }
+        if (racine.getValeur().equals(valeur)) {
+            return false;
+        }
+        return racine.supprimeSiFeuille(valeur);
     }
 }

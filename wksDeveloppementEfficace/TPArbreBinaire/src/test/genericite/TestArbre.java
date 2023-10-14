@@ -305,6 +305,7 @@ public class TestArbre {
         
         // tests de suppressions impossibles
         nbTestOk = 0;
+        arbre.afficheAbreNiveau();
         for (int valeur : PAS_SUR_FEUILLE) {
             if (arbre.supprimeSiFeuille(valeur)) {
                 System.out.println("Echec => suppression de " + valeur
@@ -352,8 +353,8 @@ public class TestArbre {
 //       test3Parcours();
 //       testHauteur();
 //       testEstSurUneFeuille();
-       testPlusGrandElement();
-//       testSupprimerSiFeuille();
+//       testPlusGrandElement();
+       testSupprimerSiFeuille();
        
        ArbreBinaire<Integer> arbre = creerArbre(ARBRE_ENONCE);
 //       arbre.afficheAbreNiveau();
