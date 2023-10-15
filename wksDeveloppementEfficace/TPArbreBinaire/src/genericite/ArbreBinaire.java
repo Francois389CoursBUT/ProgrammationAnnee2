@@ -6,7 +6,7 @@
 package genericite;
 
 /**
- * TODO comment class responsibility (SRP)
+ * Un arbre binaire de recherche
  * @author François de Saint Palais
  */
 public class ArbreBinaire<E extends Comparable<E>> {
@@ -95,14 +95,33 @@ public class ArbreBinaire<E extends Comparable<E>> {
      * false sinon 
      */
     public boolean supprimeSiFeuille(E valeur) {
+        if (racine == null ) {
+            return false;
+        }
         if (   racine.getVoisinGauche() == null
             && racine.getVoisinDroite() == null) {
             racine = null;
             return true;
         }
-        if (racine.getValeur().equals(valeur)) {
+        if (racine.getValeur().equals(valeur) || !racine.estPresente(valeur)) {
             return false;
         }
         return racine.supprimeSiFeuille(valeur);
     }
+    
+    /**
+     * 
+     * TODO comment method role
+     * @param valeur
+     * @return
+     */
+    public boolean supprimerQuelconque(E valeur) {
+        if (   racine == null || !racine.estPresente(valeur) 
+            || racine.getValeur().equals(valeur)) {
+            
+            return false;
+        }
+        return racine.supprimerQuelconque(racine, valeur);
+    }
+
 }

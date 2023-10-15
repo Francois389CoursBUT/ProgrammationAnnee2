@@ -92,6 +92,18 @@ public class Noeud<E extends Comparable<E>> {
         return voisinGauche;
     }
 
+    public void setValeur(E valeur) {
+        this.valeur = valeur;
+    }
+
+    public void setVoisinGauche(Noeud<E> voisinGauche) {
+        this.voisinGauche = voisinGauche;
+    }
+
+    public void setVoisinDroite(Noeud<E> voisinDroite) {
+        this.voisinDroite = voisinDroite;
+    }
+
     /**
      * TODO comment method role
      * @param valeurAInserer
@@ -188,7 +200,6 @@ public class Noeud<E extends Comparable<E>> {
      * false sinon 
      */
     public boolean supprimeSiFeuille(E valeurASupprimer) {
-        //TODO Fix 
         if (valeurASupprimer.compareTo(valeur) < 0) {
             if (voisinGauche.voisinGauche == null && voisinGauche.voisinDroite == null) {
                 if (voisinGauche.valeur.equals(valeurASupprimer)) {
@@ -216,7 +227,71 @@ public class Noeud<E extends Comparable<E>> {
         
     }
 
-
-
+    /**
+    * Supprime la valeur argument si elle est présente à partir du noeud courant,
+    * donc soit en tant que valeur du noeud courant, soit sur l'un des noeuds
+    * descendants du noeud courant.
+    * @param pere noeud père du noeud courant
+    * @param aSupprimer valeur à supprimer
+    * @return un booléen égal à vrai ssi la suppression a pu se faire
+    * (si le noeud pere a pour valeur null, la méthode renvoie faux.
+    * En effet, la suppression exige de modifier éventuellement le noeud
+    * père. Son abscence empêche donc d'effectuer la suppression)
+    */
+    public boolean supprimerQuelconque(Noeud<E> pere ,E aSupprimer) {
+        if (aSupprimer.compareTo(pere.valeur) < 0) {
+            if (!voisinGauche.valeur.equals(aSupprimer)) {
+                return voisinGauche.supprimerQuelconque(voisinGauche, aSupprimer);
+            }
+            
+            //TODO Suppression de l'élement
+            if (voisinGauche.voisinDroite == null) {
+                pere.voisinGauche = voisinGauche.voisinGauche;
+                return true;
+            }
+            if (voisinGauche.voisinGauche == null) { //Symetrique du précédent
+                pere.voisinGauche = voisinGauche.voisinDroite;
+                return true;
+            }
+            Noeud<E> plusGrand = voisinGauche.plusGrandNoeud();
+            voisinGauche.setValeur(plusGrand.getValeur());
+            voisinGauche.supprimerQuelconque(voisinGauche, plusGrand.getValeur());
+            return true;                    
+        }
+        
+        if (aSupprimer.compareTo(pere.valeur) > 0) {
+            if (!voisinDroite.valeur.equals(aSupprimer)) {
+                return voisinDroite.supprimerQuelconque(voisinDroite, aSupprimer);
+            }
+            
+            //TODO Suppression de l'élement
+            if (voisinDroite.voisinDroite == null) {
+                pere.voisinDroite = voisinDroite.voisinGauche;
+                return true;
+            }
+            if (voisinDroite.voisinGauche == null) {
+                pere.voisinDroite = voisinDroite.voisinDroite;
+                return true;
+            }
+            Noeud<E> plusGrand = voisinDroite.plusGrandNoeud();
+            voisinDroite.setValeur(plusGrand.getValeur());
+            voisinDroite.supprimerQuelconque(voisinDroite, plusGrand.getValeur());
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+    * Renvoie la référence sur le noeud contenant la plus grande valeur
+    * à partir du noeud courant
+    * @return le noeud qui contient la plus grande valeur à partir
+    * du noeud courant, éventuellement le noeud courant lui-même
+    */
+    public Noeud<E> plusGrandNoeud() {
+        if (voisinDroite == null) {
+            return this;
+        }
+        return voisinDroite.plusGrandNoeud();
+    }
 
 }
