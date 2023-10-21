@@ -261,8 +261,8 @@ public class TestIndexMot {
 //        testGetListeNumero();
 //        testGetListeMot();
 //        testToString();
-        testSupprimerNumero();
+//        testSupprimerNumero();
 //        testIncrementerApres();
-//        testsupprimerDecrementerApres();        
+        testsupprimerDecrementerApres();        
     }
 }
