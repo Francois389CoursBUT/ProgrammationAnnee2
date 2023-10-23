@@ -1,6 +1,21 @@
 import socket
 
 TAILLE = 128
+SEPARATEUR = "\n"
+PSEUDO = ""
+compteur = 0
+message_fin = "STOP"
+
+def definir_pseudo():
+    global PSEUDO 
+    PSEUDO = input("Entrez votre pseudo : ")
+
+def incremente_compteur():
+    global compteur
+    compteur += 1
+
+def get_message_fin()->str:
+    return message_fin
 
 def preparer_client():
     # with ... as ... pas utilisable car socket automatiquement fermée dès la sortie du bloc !
@@ -37,20 +52,26 @@ def preparer_serveur(coord):
 
 def construire_requete():
     # unique opération à faire ici : saisie requête
-    requete = input('Saisir la requête : ')
+    requete = PSEUDO + SEPARATEUR
+    requete += input('Saisir le message : ')
     return(requete.encode())
 
 
-def construire_reponse(bloc):
-    # ici, "écho" => on retourne ce qu'on a reçu 
+def construire_reponse(bloc:str)->str:
+    message = bloc.decode().split(SEPARATEUR)
+    print(message)
+    if len(message[1]) < 20:
+        code = 'c'
+    else:
+        code = 'l'
+    reponse = message[1] + SEPARATEUR + code + SEPARATEUR + str(compteur)
     print('Construction réponse effectuée')
-    return bloc 
+    return (reponse.encode())
 
 
 def analyser(bloc):
-    # ici, pas d'analyse car on retourne ce qu'on a reçu
     print('Analyse requête effectuée')
-    return bloc 
+    return bloc
 
 
 def utiliser(bloc):
@@ -89,8 +110,3 @@ def arreter(s):
         print('Socket encore ouverte !')
     else:
         print('Socket correctement fermée')
-
-
-
-
-
