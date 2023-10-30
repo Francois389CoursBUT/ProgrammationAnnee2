@@ -33,7 +33,7 @@ def analyser(reponse: str):
     """
     Affiche la reponse à une requete
     """
-    print(reponse)
+    print("Réponse reçu : " + reponse)
 
 def contruire_requete():
     """Demande une saisie à l'utilisateur et envoie la requete
