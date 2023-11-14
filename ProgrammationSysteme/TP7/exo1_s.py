@@ -1,5 +1,7 @@
 import module_tcp as tcp
 # base serveur "echo" TCP itératif 1 connexion
+import socket
+import threading
 
 separateur = b'|' 
 
@@ -21,13 +23,9 @@ def construire_reponse(message,code,compteur):
     print('Construction réponse effectuée')
     return rep
 
-# programme principal
-cpt = 0
-coord_S = ('127.0.0.1', 65432)
-s1 = tcp.preparer_serveur(coord_S)
-on_continue = True
-if (s1 != -1):
-    s2 = tcp.accepter(s1)
+def communication(s2:socket):
+    cpt = 0
+    on_continue = True
     if (s2 != -1):
         while (on_continue == True):
             requete = tcp.recevoir(s2)
@@ -43,4 +41,31 @@ if (s1 != -1):
             else:
                 on_continue = False
         tcp.arreter(s2)
+
+def demarrerThread(listeThread:list):
+    for thread in listeThread:
+        if not thread.is_alive():
+            thread.start()
+            
+def attent(listeThread:list):
+    for thread in listeThread:
+        thread.join()
+
+# programme principal
+
+N = 2 # Nombre de client autorisé avant arret
+
+coord_S = ('10.2.6.25', 65432)
+s1 = tcp.preparer_serveur(coord_S)
+if (s1 != -1):
+    nbClient = 0
+    listeThread =  [None]
+    listeSocket =  [None]
+    while nbClient <= N:
+        listeSocket.append(tcp.accepter(s1))
+        listeThread.append(threading.Thread(target=communication, args=(listeSocket[nbClient],)))
+        nbClient += 1
+        demarrerThread(listeThread)
     tcp.arreter(s1)
+    print("Arret du serveur")
+    attent(listeThread)

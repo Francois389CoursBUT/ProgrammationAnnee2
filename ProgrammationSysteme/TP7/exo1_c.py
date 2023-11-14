@@ -21,7 +21,7 @@ def utiliser(bloc):
 pseudo = input('Saisir votre pseudo : ')
 fin = pseudo.encode() + separateur + b'fin'
 
-coord_S = ('127.0.0.1', 65432)
+coord_S = ('10.2.6.25', 65432)
 s = tcp.preparer_client()
 on_continue = True # on arrête les échanges si 'fin' et au moindre problème
 if (s != -1):
