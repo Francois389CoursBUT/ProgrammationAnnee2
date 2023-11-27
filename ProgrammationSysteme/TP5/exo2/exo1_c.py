@@ -5,11 +5,11 @@ import module_udp as udp
 message_fin = udp.get_message_fin()
 
 udp.definir_pseudo()
-coord_S = ('127.0.0.1', 65432)
+coord_S = ('192.168.140.48', 65432)
 s = udp.preparer_client()
-on_continue = True # on arrête les échanges si 'fin' et au moindre problème
+on_continue : bool = True # on arrête les échanges si 'fin' et au moindre problème
 if (s != -1):
-    while (on_continue == True):
+    while (on_continue):
         requete = udp.construire_requete()
         if (message_fin.encode() in requete):
             on_continue = False

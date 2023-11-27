@@ -8,7 +8,7 @@ coord_S = ('127.0.0.1', 65432)
 s = udp.preparer_serveur(coord_S)
 on_continue = True # on arrête les échanges si 'fin' et au moindre problème
 if (s != -1):
-    while (on_continue == True):
+    while (on_continue):
         (requete, coord_C) = udp.recevoir(s)
         udp.incremente_compteur()
         if (requete != -1):
@@ -17,8 +17,8 @@ if (s != -1):
                 on_continue = False
             reponse = udp.construire_reponse(bloc)
             statut_envoi = udp.envoyer(s,coord_C,reponse)
-            if (statut_envoi == -1):
-                on_continue = False
+            
+            on_continue = statut_envoi != -1
         else:
             on_continue = False
     udp.arreter(s)

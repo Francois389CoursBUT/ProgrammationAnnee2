@@ -1,7 +1,7 @@
 import socket
 
 TAILLE = 128
-SEPARATEUR = "\n"
+SEPARATEUR = "-"
 PSEUDO = ""
 compteur = 0
 message_fin = "STOP"
@@ -57,7 +57,8 @@ def construire_requete():
     return(requete.encode())
 
 
-def construire_reponse(bloc:str)->str:
+def construire_reponse(bloc:bytes)->bytes:
+    global compteur
     message = bloc.decode().split(SEPARATEUR)
     print(message)
     if len(message[1]) < 20:
@@ -91,6 +92,7 @@ def envoyer(s,coord,bloc):
 
 
 def recevoir(s):
+    coord = None
     try:
         (bloc, coord) = s.recvfrom(TAILLE) # on pourrait vérifier les coordonnées
     except ConnectionResetError: # Spécifique Windows et avec adresse de rebouclage
